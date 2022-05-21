@@ -1,7 +1,7 @@
 # Linux Setup 
 My current I3 arch linux setup.
 # Dependencies
-<p1> UI - <a href="https://github.com/elkowar/eww"> Eww </a> </p1>
+[EWW](https://github.com/elkowar/eww)
 <br>
 <p1> Background - <a href="https://wiki.archlinux.org/title/Feh"> Feh </a> </p1>
 <br>

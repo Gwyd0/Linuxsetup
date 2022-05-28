@@ -2,8 +2,8 @@
 My current I3 arch linux setup.
 
 # Screenshots
-Desktop
-![screenshot1](url "Title")
+Desktop <br>
+![screenshot1](url "Title") <br>
 Sidebar
 
 # Dependencies

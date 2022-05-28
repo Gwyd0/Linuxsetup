@@ -1,0 +1,284 @@
+* {
+all: 
+  unset; 
+  //Unsets everything so you can style everything from scratch
+}
+
+$t1: rgba(#ffffff, .0); //transparrnet
+
+$c0: #080808; //background
+$c1: #101010; //lighter background
+$c2: #323232; //lighest background
+
+$c3: #999999; //#FF968A; //salmon
+$c4: #ffffff; //#8A96FF; //blue
+$c5: #ffffff; //#9AFF96; //green
+$c6: #ffffff; //#FD99DC; //pink
+
+$c7: #777777; //#ffffff; //white
+$c8: #ffffff; //#0157A3; // LIGHT blue
+$c9: #ffffff; //#4457A3; // green
+$spotifyart: "scripts/spotifyart.jpg";
+
+
+* {
+  background-color: $t1;
+  font-family: feather;
+}
+
+* scale trough highlight {
+  all: unset;
+  //background-color: $c2;
+  color: #000000;
+  border-radius: 10px;
+}
+
+* scale trough {
+  all: unset;
+  background-color: $c2;
+  border-radius: 50px;
+  min-height: 10px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+* scale trough highlight {
+  background-color: $c6;
+  color: #000000;
+  border-radius: 10px;
+}
+
+* scale trough {
+  background-color: $c2;
+  border-radius: 50px;
+  min-height: 10px;
+  min-width: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.right button {
+  color: $c6;
+}
+
+.right button:hover {
+  color: $c7;
+}
+
+.workspaces {
+  font-size: 0.9em;
+  background-color: $c0;
+  border-radius: 8px;
+  padding: .7rem .7rem .7rem .7rem;
+  margin: .4rem;
+}
+
+.workspaces button{
+  transition: 0.5s;
+  color: $c4;
+  padding-left: 4px;
+  font-size: 1.3em;
+}
+
+.workspaces button:hover {
+  color: $c7;
+}
+.workspaces active {
+  color: $c1;
+}
+
+.pmenu button{
+  color: $c3;
+  transition: 0.4s;
+  font-size: 1em;
+  padding-left: 10px;
+}
+
+.pmenu_label button{
+  color: $c3;
+  font-size: 0.7em;
+  padding-left: 10px;
+}
+
+.sidestuff{
+  font-size: 1.8em;
+  background-color: $c0;
+  border-radius: 8px;
+  padding: .1rem .7rem .1rem .7rem;
+  margin: .3rem;
+ }
+
+.scalebutton {
+  padding-right: 10px;
+}
+
+.music {
+  background-color: $c0;
+  border-radius: 8px;
+  padding: .1rem .7rem .1rem .7rem;
+  margin: .3rem;
+  color: $c6;
+}
+
+.music button {
+  font-size: 1.6em;
+}
+
+.computerwidget {
+  background-color: $c0;
+  border-radius: 8px;
+  color: $c3;
+  padding: .1rem .7rem .1rem .7rem;
+  margin: .3rem;
+}
+.computerwidget button{
+  font-size: 1.7em;
+  color: $c3;
+}
+
+.computerwidget scale trough highlight {
+  background-color: $c3;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.clock_module {
+  background-color: $c0;
+  border-radius: 8px;
+  color: $c9;
+  padding: .1rem .7rem .1rem .7rem;
+  margin: .3rem;
+}
+
+.clock_module button {
+  color: $c9;
+  font-size: 1.2em;
+}
+
+// ----- SIDE PANNEL -----
+
+.sidepannel {
+  background-color: $c0;
+  border-radius: 8px;
+  padding: .7rem .7rem .7rem .7rem;
+  margin: .3rem;
+}
+
+.roundpannel {
+  background-color: $c1;
+  border-radius: 8px;
+  padding: .7rem .10rem .7rem .7rem;
+  margin: .3rem;
+  color: $c4;
+  transition: 0.6s;
+}
+
+.roundpannel button:hover {
+  color: $c7;
+}
+
+
+.soundpannel {
+  background-color: $c1;
+  border-radius: 8px;
+  padding: .7rem .7rem .7rem .7rem;
+  margin: .3rem;
+  color: $c4;
+}
+
+.soundpannel button {
+  color: $c6;
+  font-size: 2em;
+}
+
+.wifipannel {
+  background-color: $c1;
+  border-radius: 8px;
+  padding: .9rem .9rem .9rem .9rem;
+  margin: .3rem;
+  color: $c4;
+}
+
+.wifipannel button { //some bug
+  font-size: 5em;
+  padding: .99rem;
+  color: $c4;
+  transition: 0.6s;
+}
+.wifipannel button:hover {
+  color: $c7;
+}
+
+.wifipannel label {
+  font-size: 1em;
+}
+
+.sys {
+  background-color: $c1;
+  border-radius: 16px;
+  margin: .3rem;
+  padding: 5px 5px 5px 5px;
+}
+.sys button {
+  font-size: 3em;
+  color: $c3;
+  transition: 0.7s;
+  padding: 9px 5px 5px 5px;
+}
+
+.sys button:hover {
+  color: $c7;
+}
+
+.labelv {
+  font-size: 1.3em;
+  padding-left: 5px;
+  color: $c4;
+}
+
+.labels {
+  font-size: 1em;
+  padding-left: 7px;
+  color: $c6;
+}
+
+.labelc {
+  color: $c9;
+  font-size: 1.2em;
+}
+
+.labelt {
+  color: $c4;
+  font-family: mono;
+  font-size: 4.5em;
+}
+
+.cpu-radial {
+  color: $c8;
+
+}
+
+.cpu-radial-label {
+  font-size: 6em;
+  padding: 2.5rem;
+}
+
+.ram-radial {
+  color: $c9;
+
+}
+.ram-radial-label {
+  font-size: 6em;
+  padding: 2.5rem;
+}
+
+.spotifyimg {
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  padding: .7rem .7rem .7rem .7rem;
+  background-image: url($spotifyart);
+  background-position: center;
+  background-size: cover;
+  min-height: 100px;
+  min-width: 100px;
+}

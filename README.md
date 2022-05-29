@@ -15,6 +15,6 @@ Compositor - [Picom](https://aur.archlinux.org/packages/picom-rounded-corners) (
 Notifications - [Dunst](https://wiki.archlinux.org/title/Dunst) <br />
 
 # Known Issues
-i will most likely fix these when i have time.
+i will fix these when i have time.
 * Weather not updaing.
 * Screenshot button and File button not working.

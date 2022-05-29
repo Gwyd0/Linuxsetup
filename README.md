@@ -4,7 +4,6 @@ My current I3 arch linux setup.
 # Screenshots
 Desktop <br>
 ![screenshot1](https://github.com/Gwyd0/Linuxsetup/blob/main/dunst/img/2022-05-29-screenshot_000.png?raw=true) <br>
-Sidebar
 
 # Dependencies
 UI - [Eww](https://github.com/elkowar/eww) <br />

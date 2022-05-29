@@ -55,7 +55,7 @@
                  :value volume
                  :tooltip "Volume: ${volume}%"
                  :action1 "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh"
-                 :action2 "amixer -D pulse sset Master"
+                 :action2 "amixer -D pulse sset Master {}%"
                  :label sound-icon
                  :utrue "${eww} update vol_reveal=true"
                  :ufalse "${eww} update vol_reveal=false")
@@ -202,7 +202,7 @@
             :min 0
             :max 101
             :orientation "h"
-            :tooltip "VOL: ${volume}"
+            :tooltip "Volume: ${volume}"
             :active true
             :onchange "amixer -D pulse sset Master {}%"))
 
@@ -212,7 +212,7 @@
             :min 0
             :max 101
             :orientation "h"
-            :tooltip "MIC: ${mic_percent}"
+            :tooltip "Mic: ${mic_percent}"
             :active true
             :onchange "amixer -D pulse sset Capture {}%"
 )))
@@ -249,11 +249,11 @@
 
 (defwidget links [] 
   (box :class "roundpannel" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "https://github.com" "Github")
-    (button :onclick "https://www.youtube.com/" "Youtube")
-    (button :onclick "https://www.reddit.com/r/unixporn/top/?t=year" "R/unixporn")
-    (button :onclick "https://open.spotify.com/" "Spotify Web Player")
-    (button :onclick "https://elkowar.github.io/eww/magic-vars.html#eww_cpu" "EWW Docs")
+    (button :onclick "xdg-open https://github.com" "Github")
+    (button :onclick "xdg-open https://www.youtube.com/" "Youtube")
+    (button :onclick "xdg-open https://www.reddit.com/r/unixporn/top/?t=year" "R/unixporn")
+    (button :onclick "xdg-open https://open.spotify.com/" "Spotify Web Player")
+    (button :onclick "xdg-open https://elkowar.github.io/eww/magic-vars.html#eww_cpu" "EWW Docs")
   ))
 
 (defwidget exit [] 

@@ -3,7 +3,7 @@ My current I3 arch linux setup.
 
 # Screenshots
 Desktop <br>
-![screenshot1](https://https://github.com/Gwyd0/Linuxsetup/blob/main/dunst/img/2022-05-29-screenshot.png) <br>
+![screenshot1](https://github.com/Gwyd0/Linuxsetup/blob/main/dunst/img/2022-05-29-screenshot.png?raw=true) <br>
 Sidebar
 
 # Dependencies

@@ -3,7 +3,7 @@ My current I3 arch linux setup.
 
 # Screenshots
 Desktop <br>
-![screenshot1](url "dunst/img/2022-05-29-screenshot.png") <br>
+![screenshot1](url "/dunst/img/2022-05-29-screenshot.png") <br>
 Sidebar
 
 # Dependencies

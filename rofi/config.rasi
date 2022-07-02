@@ -3,7 +3,7 @@ configuration {
         width: 50;
         lines: 15;
         columns: 1;
-        font: "Iosevka 12";
+        font: "mono 12";
         bw: 0;
         location: 0;
         padding: 10;

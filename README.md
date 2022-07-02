@@ -25,4 +25,4 @@ i will fix these when i have time.
 * Install dependncies
 * Download these files and put them in .config
 * choose a wallpaper from /wallpapers and put it in ~/Pictures named wallpaper.jpg
-* Thats it.
+* Thats it. Enjoy.

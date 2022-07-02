@@ -12,7 +12,7 @@ Background - [Feh](https://wiki.archlinux.org/title/Feh) <br />
 Terminal - [Alacritty](https://wiki.archlinux.org/title/Alacritty) <br />
 Compositor - [Picom](https://aur.archlinux.org/packages/picom-rounded-corners) (this fork allows rounded corners + other features)<br />
 Notifications - [Dunst](https://wiki.archlinux.org/title/Dunst) <br />
-App Launcher - [Rofi](https://wiki.archlinux.org/title/Dunst) <br />
+App Launcher - [Rofi](https://github.com/davatorium/rofi) <br />
 
 # Known Issues
 i will fix these when i have time.

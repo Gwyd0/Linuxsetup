@@ -1,9 +1,11 @@
+  GNU nano 5.4                      config.rasi
 configuration {
         modi: "window,run,ssh,drun";
         width: 50;
         lines: 15;
         columns: 1;
         font: "mono 12";
+        terminal: "alacritty";
         bw: 0;
         location: 0;
         padding: 10;
@@ -12,7 +14,7 @@ configuration {
         hide-scrollbar: true;
         display-drun: ">";
         levenshtein-sort: true;
-        color-normal: "#242424, #FFFFFF, #242424, #FFffff, #242424";
-        color-window: "#242424, #242424, #242424";
+        color-normal: "#080808, #FFFFFF, #080808, #FFffff, #080808";
+        color-window: "#080808, #080808, #080808";
         fixed-num-lines: true;
 }

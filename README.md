@@ -12,8 +12,10 @@ Background - [Feh](https://wiki.archlinux.org/title/Feh) <br />
 Terminal - [Alacritty](https://wiki.archlinux.org/title/Alacritty) <br />
 Compositor - [Picom](https://aur.archlinux.org/packages/picom-rounded-corners) (this fork allows rounded corners + other features)<br />
 Notifications - [Dunst](https://wiki.archlinux.org/title/Dunst) <br />
+App Launcher - [Rofi](https://wiki.archlinux.org/title/Dunst) <br />
 
 # Known Issues
 i will fix these when i have time.
 * Weather not updaing.
 * Screenshot button and File button not working.
+* i'm not very happy with the general athletics (mostly colors and fonts), so im going to change that eventually.

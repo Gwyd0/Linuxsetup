@@ -19,8 +19,6 @@ Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 # Known Issues
 i will fix these when i have time.
 * Weather not updaing.
-* Screenshot button and File button not working.
-* i'm not very happy with the general athletics (mostly colors and fonts), so im going to change that eventually.
 * Make a install script. (prob for arch and ubuntu)
 
 # Instalation

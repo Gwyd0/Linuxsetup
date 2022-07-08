@@ -13,7 +13,8 @@ Terminal - [Alacritty](https://wiki.archlinux.org/title/Alacritty) <br />
 Compositor - [Picom](https://aur.archlinux.org/packages/picom-rounded-corners) (this fork allows rounded corners + other features)<br />
 Notifications - [Dunst](https://wiki.archlinux.org/title/Dunst) <br />
 App Launcher - [Rofi](https://github.com/davatorium/rofi) <br />
-Nerd Fonts
+[Playerctl](https://archlinux.org/packages/community/x86_64/playerctl/) <br />
+Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 
 # Known Issues
 i will fix these when i have time.

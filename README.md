@@ -13,12 +13,15 @@ Terminal - [Alacritty](https://wiki.archlinux.org/title/Alacritty) <br />
 Compositor - [Picom](https://aur.archlinux.org/packages/picom-rounded-corners) (this fork allows rounded corners + other features)<br />
 Notifications - [Dunst](https://wiki.archlinux.org/title/Dunst) <br />
 App Launcher - [Rofi](https://github.com/davatorium/rofi) <br />
-[Playerctl](https://archlinux.org/packages/community/x86_64/playerctl/) <br />
+Music Controller - [Playerctl](https://archlinux.org/packages/community/x86_64/playerctl/) <br />
 Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 
 # Known Issues
 i will fix these when i have time.
-* Weather not updaing.
+* Some kind of allignment error, most likely the font.
+* Rofi config needs redoing.
+* Dunst Notifications are too long.
+* Update Screenshots
 * Make a install script. (prob for arch and ubuntu)
 
 # Instalation

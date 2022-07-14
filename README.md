@@ -23,6 +23,7 @@ Notifications - [Dunst](https://wiki.archlinux.org/title/Dunst) <br />
 App Launcher - [Rofi](https://github.com/davatorium/rofi) <br />
 Music Controller - [Playerctl](https://archlinux.org/packages/community/x86_64/playerctl/) <br />
 Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
+Lockscreen - [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) <br />
 
 # Known Issues
 i will fix these when i have time.

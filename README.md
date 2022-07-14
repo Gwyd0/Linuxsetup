@@ -1,5 +1,5 @@
 # Linux Setup 
-My current I3 arch linux setup.
+My current **I3** daily arch linux setup.
 
 # Screenshots
 Desktop <br>
@@ -7,7 +7,7 @@ Desktop <br>
 
 # Dependencies
 UI - [Eww](https://github.com/elkowar/eww) <br />
-WM - [I3](https://wiki.archlinux.org/title/I3) <br />
+WM (i3) - [I3](https://wiki.archlinux.org/title/I3) <br />
 Background - [Feh](https://wiki.archlinux.org/title/Feh) <br />
 Terminal - [Alacritty](https://wiki.archlinux.org/title/Alacritty) <br />
 Compositor - [Picom](https://aur.archlinux.org/packages/picom-rounded-corners) (this fork allows rounded corners + other features)<br />

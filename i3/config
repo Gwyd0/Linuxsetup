@@ -1,16 +1,15 @@
-# basic vars
+# Basic Varables
 set $inner_gaps 7
 set $outer_gaps 1
 set $wallpaper ~/Pictures/wallpaper.jpg
 smart_borders on
 #smart_gaps on
-set $mod Mod4
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+
+# Execute Scripts
+
+set $mod Mod4
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id  nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
@@ -20,7 +19,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 bindsym $mod+Return  exec i3-sensible-terminal 
 # change alacritty to whatever terminal your using or i3-sensible-terminal
@@ -45,26 +43,12 @@ bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
-# split in horizontal orientation
 bindsym $mod+h split h
-
-# split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
 #bindsym $mod+d focus child
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -102,35 +86,20 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 
-
 bindsym $mod+Shift+c reload && eww reload && killall feh && killall picom && killall dunst
-
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
@@ -139,29 +108,23 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # PICOM HAS TO BE DONE MANUALLY
-
-# START
-exec_always --no-startup-id feh --bg-scale $wallpaper
+# WALLPAPER
+exec_always --no-startup-id feh --bg-scale $wallpaper 
+# START APPS
 
 exec discord
 exec spotify
 
-#keymap
+#KEYMAP
 #exec_always --no-startup-id setxkbmap -layout gb
+# use if there are gpu bugs --experimental-backends
 
 exec_always --no-startup-id dunst 
 exec_always --no-startup-id eww open bar
-# --experimental-backends
 exec_always --no-startup-id eww reload
 exec_always --no-startup-id picom --experimental-backends  --config=.config/i3/picom.conf
 
 for_window [class="^.*"] border none
-
-#client.focused          #4E3F9A #4E3F9A #ffffff #4E3F9A   #4E3F9A
-#client.unfocused        #242038 #242038 #ffffff #242038   #242038
-#client.urgent           #242038 #242038 #ffffff #242038   #242038
-#client.focused_inactive #242038 #242038 #ffffff #242038   #242038
-#client.background       #242038
 
 gaps inner $inner_gaps
 gaps outer $outer_gaps

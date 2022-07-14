@@ -29,7 +29,7 @@
     # The maximum height of a single notification, excluding the frame.
     height = 60
     
-    geometry = "0x30-3+30"
+    geometry = "300x20-7+55"
 
     # Position the notification in the top right corner
     #origin = bottom-right
@@ -305,14 +305,14 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#242424"
+    background = "#080808"
     foreground = "#ffffff"
     timeout = 50
     # Icon for notifications with low urgency, uncomment to enable
     icon = ~/.config/dunst/img/noti.png
 
 [urgency_normal]
-    background = "#242424"
+    background = "#080808"
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
@@ -429,7 +429,6 @@
 #    summary = "*signed on*"
 #    urgency = low
 #
-#[signed_off]
 #    appname = Pidgin
 #    summary = *signed off*
 #    urgency = low
@@ -442,7 +441,6 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
-# vim: ft=cfg
 [Spotify]
     appname=Spotify
     timeout = 20

@@ -6,6 +6,9 @@ Desktop and sidebar <br>
 ![screenshot1](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot1.png?raw=true) <br>
 Rounded Corners
 ![screenshot2](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot2.png?raw=true) <br>
+# Features
+* Rounded Corners (picom)
+
 
 # Dependencies
 UI - [Eww](https://github.com/elkowar/eww) <br />
@@ -25,7 +28,7 @@ i will fix these when i have time.
 * Update Screenshots
 * Make a install script. (prob for arch and ubuntu)
 
-# Instalation
+# Installation
 * Install dependncies
 * Download these files and put them in .config
 * choose a wallpaper from /wallpapers and put it in ~/Pictures named wallpaper.jpg

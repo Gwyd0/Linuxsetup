@@ -8,7 +8,7 @@ Rounded Corners
 ![screenshot2](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot2.png?raw=true) <br>
 # Features
 * Rounded Corners (picom)
-* Weather
+* Weather widget
 * A widgets bar 
 ![screenshot3](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot3.png?raw=true) <br>
 

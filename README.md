@@ -19,7 +19,6 @@ Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 # Known Issues
 i will fix these when i have time.
 * Some kind of allignment error, most likely the font.
-* Rofi config needs redoing.
 * Dunst Notifications are too long.
 * Update Screenshots
 * Make a install script. (prob for arch and ubuntu)

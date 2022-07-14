@@ -1,25 +1,18 @@
 [global]
     monitor = 1
     follow = none
-    # dynamic width from 0 to 300
-    # width = (0, 300)
-    # constant width of 300
     width = 250
-    height = 60
-    
-    geometry = "300x20-7+55"
-
+    height = 100
+    geometry = "300x10-9+55"
     #origin = top-left
-
-    # Offset from the origin
-    offset = 4x50
+    #offset = 4x60
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
 
     # Maximum number of notification (0 means no limit)
     notification_limit = 3
-
+    startup_notification = yes
     ### Progress bar ###
 
     # Turn on the progess bar. It appears when a progress hint is passed with
@@ -34,7 +27,7 @@
     progress_bar_frame_width = 1
 
     # Set the minimum width for the progress bar
-    progress_bar_min_width = 150
+    progress_bar_min_width = 1
 
     # Set the maximum width for the progress bar
     progress_bar_max_width = 300
@@ -55,10 +48,12 @@
 
     ### Text ###
 
-    font = feather 12
+    font = mono 12
 
     line_height = 0
-    markup = full
+    word_warp = yes
+    shrink = yes
+    #markup = full
 
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -89,7 +84,7 @@
     hide_duplicate_count = false
 
     # Display indicators for URLs (U) and actions (A).
-    show_indicators = no
+    show_indicators = yes
 
     ### Icons ###
 
@@ -99,7 +94,7 @@
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
     # max_icon_size takes precedence over this.
-    min_icon_size = 0
+    min_icon_size = 32
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 32
@@ -121,7 +116,7 @@
     dmenu = /usr/bin/rofi -p dunst:
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/firefox
+    browser = /usr/bin/Firefox
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true

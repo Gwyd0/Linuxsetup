@@ -1,10 +1,9 @@
 # basic vars
 set $inner_gaps 7
 set $outer_gaps 1
-set $wallpaper ~/Pictures/wallpaper3.jpg
+set $wallpaper ~/Pictures/wallpaper.jpg
 smart_borders on
 #smart_gaps on
-
 set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -23,10 +22,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-bindsym $mod+Return  exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Return  exec i3-sensible-terminal 
+# change alacritty to whatever terminal your using or i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show drun
-bindsym $mod+Shift+z exec --no-startup-id bash ~/.config/eww/scripts/opensidebar.sh
+bindsym $mod+Shift+z exec --no-startup-id eww open --toggle sidebar
 
 # change focus
 bindsym $mod+j focus left
@@ -147,7 +147,7 @@ exec discord
 exec spotify
 
 #keymap
-exec_always --no-startup-id setxkbmap -layout gb
+#exec_always --no-startup-id setxkbmap -layout gb
 
 exec_always --no-startup-id dunst 
 exec_always --no-startup-id eww open bar

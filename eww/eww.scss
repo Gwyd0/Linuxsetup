@@ -1,10 +1,4 @@
-* {
-all: 
-  unset; 
-  //Unsets everything so you can style everything from scratch
-}
-
-$t1: rgba(#ffffff, .0); //transparrnet
+$t1: rgba(#242424, .0); //transparrnet
 
 $c0: #080808; //background
 $c1: #101010; //lighter background
@@ -18,12 +12,12 @@ $c6: #ffffff; //#FD99DC; //pink
 $c7: #777777; //#ffffff; //white
 $c8: #ffffff; //#0157A3; // LIGHT blue
 $c9: #ffffff; //#4457A3; // green
-$spotifyart: "scripts/spotifyart.jpg";
-
 
 * {
+  all: unset;
+  padding-right: 2px; // some font bug
   background-color: $t1;
-  font-family: feather;
+  font-family: feather, DroidSansMono NF;
 }
 
 * scale trough highlight {
@@ -194,23 +188,18 @@ $spotifyart: "scripts/spotifyart.jpg";
 .wifipannel {
   background-color: $c1;
   border-radius: 8px;
-  padding: .9rem .9rem .9rem .9rem;
+  padding: 1.6rem .1rem .1rem .1rem;
   margin: .3rem;
   color: $c4;
+  font-size: 2em;
 }
 
-.wifipannel button { //some bug
-  font-size: 5em;
-  padding: .99rem;
-  color: $c4;
-  transition: 0.6s;
+.wifipannel button {
+  font-size: 3em;
 }
+
 .wifipannel button:hover {
   color: $c7;
-}
-
-.wifipannel label {
-  font-size: 1em;
 }
 
 .sys {
@@ -275,8 +264,7 @@ $spotifyart: "scripts/spotifyart.jpg";
 .spotifyimg {
   border-radius: 10px;
   background-repeat: no-repeat;
-  padding: .7rem .7rem .7rem .7rem;
-  background-image: url($spotifyart);
+  padding: .7rem;
   background-position: center;
   background-size: cover;
   min-height: 100px;

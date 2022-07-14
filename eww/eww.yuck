@@ -3,10 +3,10 @@
 
 (defpoll cpu :interval "5s" "echo `top -b -n1 | grep \"Cpu(s)\" | awk '{print $2 + $4}'`")
 
-(defpoll clock_time :interval "1m" "date  +\%I:%M")
+(defpoll clock_time :interval "1m" "date +\%I:%M")
 (defpoll clock_date :interval "12h" "date '+%d/%m/%y - %a'")
 
-(deflisten music :interval "15s" "playerctl --follow metadata --format '{{ artist }}' || true")
+(deflisten music :interval "15s" "playerctl --follow metadata --format '{{ title }}' || true")
 
 (defvar eww "eww -c $HOME/.config/eww/")
 
@@ -14,9 +14,11 @@
 (defpoll mic-icon :interval "12h" "echo ''")
 
 (defpoll play-icon :interval "15s" "sh scripts/player.sh")
+(defpoll art :interval "5s" "bash scripts/getart")
 (defpoll wifi-icon :interval "15s" "sh scripts/wifi.sh")
 
-(defpoll weather-icon :interval "12h" "sh scripts/weather.sh") 
+(defpoll weather-icon :interval "8h" "sh scripts/weather.sh")
+(defpoll weather-text :interval "8h" "bash scripts/weatheri.sh") 
 
 (defvar music_reveal false)
 (defvar power_reveal false)
@@ -186,11 +188,11 @@
 
 (defwidget musicv []
   (box :class "roundpannel" :space-evenly "false" :orientation "h"
-  (box :class "spotifyimg" :space-evenly "false" :orientation "h")
+  (box :class "spotifyimg" :space-evenly "false" :orientation "h" :style "background-image: url('${art}');")
   (box :class "labels" :space-evenly "true" :orientation "v"
-  (button :onclick "playerctl --player=vlc,%any next" "嶺")
-  (button :onclick "sh scripts/playerbutton.sh" play-icon)
-  (button :onclick "playerctl --player=vlc,%any next" "嶺")
+  (button :onclick "playerctl -p spotify next" "嶺")
+  (button :onclick "bash ~/.config/eww/scripts/playerbutton.sh" play-icon)
+  (button :onclick "playerctl -p spotify previous" "嶺")
 )))
 
 (defwidget sound []
@@ -217,9 +219,6 @@
             :onchange "amixer -D pulse sset Capture {}%"
 )))
      (box :class "sys" :space-evenly "true" :orientation "v"
-       (box :space-evenly "true" :orientation "h" 
-         (button :onclick "" "")
-         (button :onclick "" ""))
        (box :space-evenly "true" :orientation "h"   
 ))))
 
@@ -239,13 +238,13 @@
                 :labelclass "cpu-radial-label"
                 :class "cpu-radial")))
 
-(defwidget wifi []
-  (box :class "wifipannel" :space-evenly "true" :orientation "v"
-  (button :onclick "sh scripts/wifi.sh" wifi-icon)))
+(defwidget wifi [] (box :class "wifipannel" :space-evenly "true" :orientation "v" (button :onclick "sh scripts/wifi.sh" wifi-icon)))
 
 (defwidget weather []
-  (box :class "wifipannel" :space-evenly "true" :orientation "v"
-  (button :onclick "" weather-icon)))
+  (box :class "wifipannel" :space-evenly "false" :orientation "v"
+  (button :onclick "" weather-icon)
+  (label :text "${weather-text}")
+))
 
 (defwidget links [] 
   (box :class "roundpannel" :space-evenly "false" :orientation "v" :spacing 10
@@ -274,7 +273,7 @@
 
 (defwidget buttons []
   (box :class "sys" :space-evenly "true" :orientaion "h" :spacing 10
-    (button :onclick "" "")))
+    (button :onclick "poweroff" "")))
 
 (defwidget pannel []
    (box :class "sidepannel" :orientation "v" :space-evenly "true"

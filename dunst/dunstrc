@@ -3,7 +3,7 @@
     follow = none
     width = 250
     height = 100
-    geometry = "300x10-9+55"
+    geometry = "300x100-9+55"
     #origin = top-left
     #offset = 4x60
 
@@ -90,7 +90,7 @@
 
     # Align icons left/right/top/off
     icon_position = left
-
+   
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
     # max_icon_size takes precedence over this.
@@ -100,7 +100,6 @@
     max_icon_size = 32
 
     # Paths to default icons.
-
     ### History ###
 
     # Should a notification popped up from history be sticky or timeout
@@ -170,6 +169,15 @@
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
 
+[Sound]
+    summary = "Speakers"
+    timeout = 5
+[Mic]
+    summary = "Mic"
+    timeout = 5
+[Error]
+    summary = "error"
+    timeout = 5
 [Spotify]
     appname=Spotify
     timeout = 20

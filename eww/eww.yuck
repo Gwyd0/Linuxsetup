@@ -56,6 +56,7 @@
       (sliderbar :reveal vol_reveal
                  :value volume
                  :tooltip "Volume: ${volume}%"
+		 :buttontip "Mute/Unmute"
                  :action1 "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh"
                  :action2 "amixer -D pulse sset Master {}%"
                  :label sound-icon
@@ -65,7 +66,8 @@
       (sliderbar :reveal mic_reveal
                  :value mic_percent
                  :tooltip "Mic: ${mic_percent}%"
-                 :action1 "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh"
+                 :buttontip "Mute/Unmute"
+		 :action1 "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh"
                  :action2 "amixer -D pulse sset Capture {}%"
                  :label mic-icon
                  :utrue "${eww} update mic_reveal=true"
@@ -78,7 +80,7 @@
               :onhoverlost "${eww} update power_reveal=false"
               :cursor "pointer"
             (box  :class "pmenu" :orientation "h" :space-evenly "false"
-                (button :onclick "exit" "")
+                (button :tooltip "Power Off" :onclick "exit" "")
         (revealer :class "pmenu_label" :transition "slideleft" :reveal power_reveal :duration "350ms"
         (button :onclick "poweroff" "Exit")))))
 
@@ -87,7 +89,7 @@
               :onhoverlost "${eww} update lock_reveal=false"
               :cursor "pointer"
             (box  :class "pmenu" :orientation "h" :space-evenly "false"
-                (button :onclick "sh scripts/lockscreen.sh" "")
+                (button :tooltip "Lockscreen" :onclick "sh scripts/lockscreen.sh" "")
         (revealer :class "pmenu_label" :transition "slideleft" :reveal lock_reveal :duration "350ms"
         (button :onclick "sh scripts/lockscreen.sh" "Lock")))))
 
@@ -145,12 +147,12 @@
              :tooltip "RAM: ${EWW_RAM.used_mem_perc}"
              :active false))))))
 
-(defwidget sliderbar [value reveal action1 action2 label tooltip  utrue ufalse]
+(defwidget sliderbar [value reveal action1 action2 label tooltip  utrue ufalse buttontip]
   (eventbox :onhover {utrue}
             :onhoverlost {ufalse}
             :cursor "pointer"
             (box   :class "scalebutton" :orientation "h" :space-evenly "false"
-                (button :onclick {action1} {label})
+                (button :tooltip {buttontip} :onclick {action1} {label})
         (revealer :transition "slideright" :reveal reveal :duration "350ms"
         (scale :value {value}
                :min 0
@@ -257,7 +259,7 @@
 
 (defwidget exit [] 
   (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "exit" "")))
+    (button :onclick "poweroff" "")))
 
 (defwidget lock []
   (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10
@@ -265,7 +267,7 @@
 
 (defwidget notifi []
   (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "dunst" "")))
+    (button :onclick "notify-send 'test'" "")))
 
 (defwidget firefox []
   (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10

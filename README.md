@@ -1,6 +1,8 @@
 # Linux Setup 
 My current **I3** daily arch linux setup.
 
+**this is my personal setup so some things may not work.**
+
 # Screenshots
 Desktop and sidebar <br>
 ![screenshot1](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot4.png?raw=true) <br>

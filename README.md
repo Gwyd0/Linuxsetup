@@ -25,11 +25,11 @@ Music Controller - [Playerctl](https://archlinux.org/packages/community/x86_64/p
 Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 Lockscreen - [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) <br />
 
-# Known Issues
+# Known Issues / Future features
 i will fix these when i have time.
 * Some kind of allignment error, most likely the font.
-* Dunst Notifications are too long.
-* Update Screenshots
+* a lot of small bugs such as the weather not updating.
+* add a calendar
 * Make a install script. (prob for arch and ubuntu)
 
 # Installation

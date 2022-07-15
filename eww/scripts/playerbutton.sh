@@ -1,8 +1,12 @@
 #!/bin/bash
-if  playerctl status | grep -q 'Playing'; then
-  playerctl -p spotify  pause
-  eww update play-icon=""
+if ps aux | grep Spotify | grep -v grep > /dev/null; then
+  if  playerctl status | grep -q 'Playing' && ps aux | grep Spotify | grep -v grep > /dev/null; then
+    playerctl -p spotify  pause
+    eww update play-icon=""
+  else
+    playerctl -p spotify  play
+    eww update play-icon=""
+  fi
 else
-  playerctl -p spotify  play
-  eww update play-icon=""
+  notify-send "Error" "Spotify Not Open." -i  "~/.config/dunst/img/error.png"
 fi

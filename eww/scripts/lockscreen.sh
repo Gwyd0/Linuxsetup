@@ -1,3 +1,4 @@
 #!/bin/bash
 playerctl pause &
-betterlockscreen -l
+#betterlockscreen -l
+i3lock

@@ -1,4 +1,0 @@
-rm -rf spotifyart.jpg
-IMG=$(playerctl metadata mpris:artUrl --player spotify)
-curl -o ~/.config/eww/scripts/spotifyart.jpg $IMG
-echo 'scripts/spotifyart.jpg'

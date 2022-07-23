@@ -1,0 +1,162 @@
+;; SIDEBAR
+
+(defwidget spotify []
+  (box :class "roundpannel" :space-evenly "false" :orientation "h"
+  (box :class "spotifyimg" :space-evenly "false" :orientation "h" :style "background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(11, 11, 1, 1)), url('${art}');"
+  (box :class "spotifytitle" :space-evenly "false" :orientation "v" :width "264"
+    (label :text "${music  != "" ? "Song: ${music}" : "Nothing Playing"}" :halign "start" :limit-width "30" )
+    (label :text "${artist != "" ? "Artist: ${artist}" : ""}" :halign "start" :limit-width "30" )
+    (label :text "${album  != "" ? "Album: ${album}" : ""}" :halign "start" :limit-width "30" )
+    (label :text "${status != "" ? "${status}" : ""}" :halign "start" :limit-width "30" )
+  ))
+  (box :class "labels" :space-evenly "true" :orientation "v" :style "background-color: #181818; border-radius: 5px; padding: 6px; margin: .3rem;"
+    (button :tooltip "Previous Song" :onclick "playerctl -p -s spotify previous" "玲")
+    (button :tooltip "Play/Pause" :onclick "bash scripts/player.sh --playerbutton" play-icon)
+    (button :tooltip "Next Song" :onclick "playerctl -p -s spotify next" "怜")
+
+)))
+
+(defwidget settings []
+  (box :class "roundpannel" :space-evenly "true" :orientation "v"
+  (box :class "roundpannel" :space-evenly "true" :orientation "v"
+     (box :class "settingspannel" :space-evenly "false" :orientation "h"
+     (button :tooltip "Mute/Unmute" :onclick "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh" sound-icon)
+     (scale :value volume_percent
+            :min 0
+            :max 101
+            :orientation "h"
+            :tooltip "Volume: ${volume_percent}%"
+            :active true
+            :onchange "amixer -D pulse sset Master {}%"))
+
+     (box :class "settingspannel" :space-evenly "false" :orientation "h"
+     (button :tooltip "Mute/Unmute" :onclick "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh" mic-icon)
+     (scale :value mic_percent
+            :min 0
+            :max 101
+            :orientation "h"
+            :tooltip "Mic: ${mic_percent}%"
+	    :active true
+            :onchange "amixer -D pulse sset Capture {}%")
+     )
+     (box :class "settingspannel" :space-evenly "false" :orientation "h"
+     (button :onclick "" "")  ;
+     (scale :value light_percent
+            :min 0
+            :max 101
+            :orientation "h"
+            :tooltip "Brightness: ${light_percent}%"
+            :active true
+            :onchange ""))
+)))
+
+(defwidget ram []
+  (box :class "roundpannel" :space-evenly "false" :orientation "v"
+  (radialmeter	:value "${EWW_RAM.used_mem_perc}"
+	        :text ""
+                :tooltip "RAM: ${EWW_RAM.used_mem_perc}%"
+		:labelclass "ram-radial-label"
+		:class "ram-radial")))
+
+(defwidget cpu []
+  (box :class "roundpannel" :space-evenly "false" :orientation "v"
+  (radialmeter  :value "${EWW_CPU.avg}"
+                :text ""
+                :tooltip "CPU: ${EWW_CPU.avg}%"
+                :labelclass "cpu-radial-label"
+                :class "cpu-radial")))
+
+(defwidget wifi []
+  (box :class "roundpannel" :space-evenly "false" :orientation "v" :vexpand "false" :hexpand "false"
+    (box :class "wifipannel" :space-evenly "true" :orientation "h"
+      (button :valgin "start" :onclick "bash scripts/wifi.sh --button" wifi-icon)
+    )
+    (box :space-evenly "true" :orientation "v"
+      (label :text wifi-text)
+      (label :text wifi-name :limit-width 14)
+    )
+))
+
+(defwidget weather []
+  (box :space-evenly "false" :orientation "v"
+  (box :space-evenly "true" :orientation "h" :style "background-color: #181818; border-radius: 5px; padding: 6px; margin: .3rem;"
+  (box :space-evenly "false" :orientation "v"
+    (label :text "${clock_day_1}" :valign "start" :halign "start")
+    (label :text "Sunny" :valign "start" :halign "start")
+    (label :text "${weather-text-1}" :valign "start" :halign "start")
+    (label :text "Bude,UK" :valign "start" :halign "start")
+  )
+  (box :class "weatherpannel" :space-evenly "false" :orientation "h" :halign "end"
+    (button :halign "center"  :tooltip "Current Weather ${weather-text-1}" :onclick "" "${weather-icon-1}")
+  ))
+
+  (box :space-evenly "true" :orientation "h" :style "background-color: #181818; border-radius: 5px; padding: 6px; margin: .3rem;"
+  (box :space-evenly "false" :orientation "v"
+    (label :text "${clock_day_2}" :valign "start" :halign "start")
+    (label :text "Sunny" :valign "start" :halign "start")
+    (label :text "${weather-text-1}" :valign "start" :halign "start")
+    (label :text "Bude,UK" :valign "start" :halign "start")
+  )
+  (box :class "weatherpannel" :space-evenly "false" :orientation "h" :halign "end"
+    (button :halign "center"  :tooltip "Current Weather ${weather-text-1}" :onclick "" "${weather-icon-1}")
+  ))
+))
+
+(defwidget links []
+  (box :class "roundpannel" :space-evenly "false" :orientation "v" :spacing 10
+    (button :onclick "xdg-open https://github.com" "Github")
+    (button :onclick "xdg-open https://www.youtube.com/" "Youtube")
+    (button :onclick "xdg-open https://www.reddit.com/r/unixporn/top/?t=year" "R/unixporn")
+    (button :onclick "xdg-open https://open.spotify.com/" "Spotify Web Player")
+    (button :onclick "xdg-open https://elkowar.github.io/eww/magic-vars.html#eww_cpu" "EWW Docs")
+  ))
+
+(defwidget quickbuttons []
+  (box :space-evenly "true" :orientation "h"
+    (box :class "sys" :space-evenly "false" :orientation "v"
+      (button :tooltip "Open Firefox" :onclick "firefox" ""))
+
+    (box :class "sys" :space-evenly "false" :orientation "v"
+      (button :tooltip "Do Not Disturb" :onclick "bash scripts/notifications.sh" noti-icon))
+
+    (box :class "sys" :space-evenly "false" :orientation "v"
+      (button :tooltip "Lockscreen" :onclick "sh scripts/lockscreen.sh" ""))
+
+    (box :class "sys" :space-evenly "false" :orientation "v"
+      (button :tooltip "Power Off" :onclick "poweroff" "襤"))))
+
+(defwidget pannel []
+   (box :class "sidepannel" :orientation "v" :space-evenly "true"
+       (box :orientation "v" :space-evenly "false"
+           (box :orientation "h" :space-evenly "true"
+               (time))
+           (box :orientation "h" :space-evenly "true"
+               (spotify))
+           (box :orientation "h" :space-evenly "true"
+               (settings)
+               (weather))
+           (box :orientation "h" :space-evenly "true"
+	             (cpu)
+               (ram))
+           (box :orientation "h" :space-evenly "true"
+               (wifi)
+               (links))
+           (box :orientation "h" :space-evenly "true"
+	             (quickbuttons)))))
+
+
+(defwidget time []
+  (box :class "roundpannel" :space-evenly "false" :orientation "v"
+  (label :text clock_time  :class "labelt")
+  (label :text clock_date  :class "labelv")))
+
+(defwindow sidebar
+  :monitor 1
+  :windowtype "toolbar"
+  :geometry (geometry :x "0%"
+                      :y "6%"
+                      :width "25%"
+                      :height "94%")
+  :wm-ignore true
+  :stacking "fg"
+  (pannel))

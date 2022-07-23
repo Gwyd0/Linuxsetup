@@ -1,0 +1,23 @@
+(defwidget dashboard []
+   (box :class "sidepannel" :orientation "v" :space-evenly "true"
+       (box :orientation "v" :space-evenly "false"
+           (box :orientation "v" :space-evenly "true"
+               (box :orientation "v" :space-evenly "true" :style "background-color: #181818; padding: .9rem; border-radius: 8px; margin: .3rem;"
+                   (button :onclick ""  "Notification Center"))
+	       (box :orientation "v" :space-evenly "true" :style "background-color: #181818; padding: .9rem; border-radius: 8px; margin: .3rem;"
+		   (button :halign "start" :onclick ""  "Spotify")
+	           (button :halign "start" :onclick ""  "Shochu - Playing"))
+))))
+
+
+(defwindow dashboard
+  :monitor 1
+  :windowtype "toolbar"
+  :geometry (geometry :x "0%"
+                      :y "6%"
+                      :width "25%"
+                      :height "94%"
+                      :anchor "top right")
+  :wm-ignore true
+  :stacking "fg"
+  (dashboard))

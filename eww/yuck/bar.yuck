@@ -1,0 +1,134 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (left)
+    (center)
+    (right)))
+
+(defwidget right []
+  (box :halign "end" :spacing 10 :space-evenly "false" :class "right"
+     (sideinfo)
+     (box1)))
+
+(defwidget left []
+  (box :halign "start" :spacing 10 :space-evenly "false"
+     (workspaces)
+     (music)
+     (computerwidget)))
+
+(defwidget center []
+  (clockwidget))
+
+(defwidget sideinfo []
+   (box :class "launchbutton" :orientation "h" :space-evenly "false" :halign "end"
+       (button :tooltip "Launch Sidebar" :onclick "eww open sidebar --toggle" "")))
+
+(defwidget box1 []
+   (box :class "sidestuff" :orientation "h" :space-evenly "false" :halign "end"
+      (sliderbar :reveal vol_reveal
+                 :value volume_percent
+                 :tooltip "Volume: ${volume_percent}%"
+		 :buttontip "Mute/Unmute"
+                 :action1 "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh"
+                 :action2 "amixer -D pulse sset Master {}%"
+                 :label sound-icon
+                 :utrue "${eww} update vol_reveal=true"
+                 :ufalse "${eww} update vol_reveal=false")
+
+      (sliderbar :reveal mic_reveal
+                 :value mic_percent
+                 :tooltip "Mic: ${mic_percent}%"
+                 :buttontip "Mute/Unmute"
+		 :action1 "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh"
+                 :action2 "amixer -D pulse sset Capture {}%"
+                 :label mic-icon
+                 :utrue "${eww} update mic_reveal=true"
+                 :ufalse "${eww} update mic_reveal=false")
+      (lockwidget)
+      (powerwidget)))
+
+(defwidget powerwidget []
+    (eventbox :onhover "${eww} update power_reveal=true"
+              :onhoverlost "${eww} update power_reveal=false"
+              :cursor "pointer"
+            (box  :class "pmenu" :orientation "h" :space-evenly "false"
+                (button :tooltip "Power off" :onclick "poweroff" "襤")
+        (revealer :class "pmenu_label" :transition "slideleft" :reveal power_reveal :duration "350ms"
+        (button :onclick "poweroff" "Exit")))))
+
+(defwidget lockwidget []
+    (eventbox :onhover "${eww} update lock_reveal=true"
+              :onhoverlost "${eww} update lock_reveal=false"
+              :cursor "pointer"
+            (box  :class "pmenu" :orientation "h" :space-evenly "false"
+                (button :tooltip "Lockscreen" :onclick "sh scripts/lockscreen.sh" "")
+        (revealer :class "pmenu_label" :transition "slideleft" :reveal lock_reveal :duration "350ms"
+        (button :onclick "sh scripts/lockscreen.sh" "Lock")))))
+
+(defwidget clockwidget []
+    (box :class "clock_module" :space-evenly "false" :orientation "h" :spacing 5
+        (button :onclick "" clock_time)))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10
+    (button :onclick "i3-msg workspaces number 0" "")
+    (button :onclick "i3-msg workspaces number 1" "")
+    (button :onclick "i3-msg workspaces number 2" "")
+    (button :onclick "i3-msg workspaces number 3" "")
+    (button :onclick "i3-msg workspaces number 4" "")
+    (button :onclick "i3-msg workspaces number 5" "")))
+
+(defwidget music []
+    (eventbox :onhover "${eww} update music_reveal=true"
+              :onhoverlost "${eww} update music_reveal=false"
+              :cursor "pointer"
+              (box   :class "music" :orientation "h" :space-evenly "false"
+                  (button :onclick "" "")
+        (revealer :transition "slideleft" :reveal music_reveal :duration "350ms"
+	(box :class "music"
+             :orientation "h"
+             :space-evenly "false"
+             :halign "end"
+             {music != "" ? "${music}" : "Nothing Playing"})))))
+
+(defwidget computerwidget []
+    (eventbox :onhover "${eww} update com_reveal=true"
+              :onhoverlost "${eww} update com_reveal=false"
+              :cursor "pointer"
+              (box   :class "computerwidget" :orientation "h" :space-evenly "false"
+                  (button :onclick "" "")
+        (revealer :transition "slideleft" :reveal com_reveal :duration "350ms"
+        (box :class "computerwidget"
+             :orientation "h"
+             :halign "start"
+             :space-evenly "false"
+        (label :text "CPU")
+        (scale :value "${EWW_CPU.avg}"
+             :min 0
+             :max 101
+             :tooltip "CPU: ${EWW_CPU.avg}"
+             :active false)
+        (label :text "RAM:")
+        (scale :value "${EWW_RAM.used_mem_perc}"
+             :min 0
+             :max 101
+             :tooltip "RAM: ${EWW_RAM.used_mem_perc}"
+             :active false)))))
+)
+
+
+(defwindow bar
+  :monitor 1
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "10px"
+                      :anchor "top center")
+  :wm-ignore false
+  :stacking "fg"
+  :reserve (struts :side "top" :distance "40%")
+  (bar))

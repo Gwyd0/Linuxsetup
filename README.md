@@ -5,7 +5,7 @@ My current **I3** daily arch linux setup.
 
 # Screenshots
 Desktop and sidebar <br>
-![screenshot1](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot6.png?raw=true) <br>
+![screenshot1](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot1.png?raw=true) <br>
 Rounded Corners
 ![screenshot2](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot2.png?raw=true) <br>
 # Features

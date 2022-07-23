@@ -1,16 +1,14 @@
 #!/bin/bash
 
-if [[ "$1" == "--updateicon" ]]; then
+if [[ "$1" == "--update" ]]; then # redundent
+  wifiname=$(iwgetid -r)
+  echo $wifiname
   if  nmcli | grep -q 'connected'; then
-    echo "直"
+    eww update wifi-icon="直"
+    eww update wifi-text="Connected"
   else
-    echo "睊"
-  fi
-elif [[ "$1" == "--updatetext" ]]; then
-  if  nmcli | grep -q 'connected'; then
-    echo "Connected"
-  else
-    echo "Not Connected"
+    eww update wifi-icon="睊"
+    eww update wifi-icon="Disconnected"
   fi
 elif [[ "$1" == "--button" ]]; then
   if  nmcli | grep -q 'connected'; then

@@ -1,24 +1,31 @@
-(defpoll volume :interval "5s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll volume_percent :interval "5s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defpoll mic_percent :interval "5s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-
-(defpoll cpu :interval "5s" "echo `top -b -n1 | grep \"Cpu(s)\" | awk '{print $2 + $4}'`")
+(defpoll light_percent :interval "1h" "echo '100'")
 
 (defpoll clock_time :interval "1m" "date +\%I:%M")
-(defpoll clock_date :interval "12h" "date '+%d/%m/%y - %a'")
+(defpoll clock_date :interval "12h" "date '+%d/%m/%y %A'")
+(defpoll clock_day_1 :interval "12h" "date '+%A'")
+(defpoll clock_day_2 :interval "12h" "date --date='next day' +'%A'")
 
-(deflisten music :interval "15s" "playerctl --follow metadata --format '{{ title }}' || true")
+(deflisten music :interval "1h" "playerctl -p spotify -F metadata title || true")
+(deflisten artist :interval "1h" "playerctl -p spotify -F metadata artist || true")
+(deflisten album :interval "1h" "playerctl -p spotify -F metadata album || true")
+(deflisten status :interval "1h" "playerctl -p spotify -F status || true")
+(deflisten art :interval "1h" "playerctl -p spotify -F  metadata mpris:artUrl || true")
 
 (defvar eww "eww -c $HOME/.config/eww/")
+(defpoll play-icon :interval "30s" "bash scripts/player.sh --player")
 
-(defpoll sound-icon :interval "12h" "echo '墳'")
-(defpoll mic-icon :interval "12h" "echo ''")
+(defvar wifi-icon "直")
+(defvar wifi-text "Connected")
+(defpoll wifi-name :interval "30s" "bash scripts/wifi.sh --update")
 
-(defpoll play-icon :interval "15s" "sh scripts/player.sh")
-(defpoll art :interval "5s" "bash scripts/getart")
-(defpoll wifi-icon :interval "15s" "sh scripts/wifi.sh")
+(defvar mic-icon "")
+(defvar sound-icon "墳")
+(defvar noti-icon "ﮖ")
 
-(defpoll weather-icon :interval "8h" "sh scripts/weather.sh")
-(defpoll weather-text :interval "8h" "bash scripts/weatheri.sh") 
+(defpoll weather-icon-1 :interval "5h" "bash scripts/weather.sh --ICON1")
+(defpoll weather-text-1 :interval "5h" "bash scripts/weather.sh --TEMP1")
 
 (defvar music_reveal false)
 (defvar power_reveal false)
@@ -28,290 +35,8 @@
 (defvar vol_reveal false)
 (defvar mic_reveal false)
 
+(include "./yuck/method.yuck")
 
-(defwidget bar []
-  (centerbox :orientation "h"
-    (left)
-    (center)
-    (right)))
-
-(defwidget right []
-  (box :halign "end" :spacing 10 :space-evenly "false" :class "right"
-     (clockmodule)
-     (box1)))
-
-(defwidget left []
-  (box :halign "start" :spacing 10 :space-evenly "false"
-     (workspaces)
-     (music)
-     (computerwidget)))
-
-(defwidget center []
-  (box2))
-
-(defwidget box2 []
-   (box :class "sidetuff" :orientation "h" :space-evenly "false" :halign "end"))
-(defwidget box1 []
-   (box :class "sidestuff" :orientation "h" :space-evenly "false" :halign "end"
-      (sliderbar :reveal vol_reveal
-                 :value volume
-                 :tooltip "Volume: ${volume}%"
-		 :buttontip "Mute/Unmute"
-                 :action1 "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh"
-                 :action2 "amixer -D pulse sset Master {}%"
-                 :label sound-icon
-                 :utrue "${eww} update vol_reveal=true"
-                 :ufalse "${eww} update vol_reveal=false")
-
-      (sliderbar :reveal mic_reveal
-                 :value mic_percent
-                 :tooltip "Mic: ${mic_percent}%"
-                 :buttontip "Mute/Unmute"
-		 :action1 "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh"
-                 :action2 "amixer -D pulse sset Capture {}%"
-                 :label mic-icon
-                 :utrue "${eww} update mic_reveal=true"
-                 :ufalse "${eww} update mic_reveal=false")
-      (lockwidget)
-      (powerwidget)))
-
-(defwidget powerwidget []
-    (eventbox :onhover "${eww} update power_reveal=true"
-              :onhoverlost "${eww} update power_reveal=false"
-              :cursor "pointer"
-            (box  :class "pmenu" :orientation "h" :space-evenly "false"
-                (button :tooltip "Power Off" :onclick "exit" "")
-        (revealer :class "pmenu_label" :transition "slideleft" :reveal power_reveal :duration "350ms"
-        (button :onclick "poweroff" "Exit")))))
-
-(defwidget lockwidget []
-    (eventbox :onhover "${eww} update lock_reveal=true"
-              :onhoverlost "${eww} update lock_reveal=false"
-              :cursor "pointer"
-            (box  :class "pmenu" :orientation "h" :space-evenly "false"
-                (button :tooltip "Lockscreen" :onclick "sh scripts/lockscreen.sh" "")
-        (revealer :class "pmenu_label" :transition "slideleft" :reveal lock_reveal :duration "350ms"
-        (button :onclick "sh scripts/lockscreen.sh" "Lock")))))
-
-(defwidget clockmodule []
-    (box :class "clock_module" :space-evenly "false" :orientation "h" :spacing 5
-        (label :text "" :class "labelc")
-        (button :onclick "" clock_time)))
-
-(defwidget workspaces []
-  (box :class "workspaces"
-       :orientation "h"
-       :space-evenly true
-       :halign "start"
-       :spacing 10
-    (button :onclick "i3-msg workspaces number 0" "") 
-    (button :onclick "i3-msg workspaces number 1" "") 
-    (button :onclick "i3-msg workspaces number 2" "") 
-    (button :onclick "i3-msg workspaces number 3" "") 
-    (button :onclick "i3-msg workspaces number 4" "") 
-    (button :onclick "i3-msg workspaces number 5" "")))
-(defwidget music []
-    (eventbox :onhover "${eww} update music_reveal=true"
-              :onhoverlost "${eww} update music_reveal=false"
-              :cursor "pointer"
-              (box   :class "music" :orientation "h" :space-evenly "false"
-                  (button :onclick "" "")
-        (revealer :transition "slideleft" :reveal music_reveal :duration "350ms"
-	(box :class "music"
-             :orientation "h"
-             :space-evenly "false"
-             :halign "end"
-             {music != "" ? "${music}" : ""})))))
-
-(defwidget computerwidget []
-    (eventbox :onhover "${eww} update com_reveal=true"
-              :onhoverlost "${eww} update com_reveal=false"
-              :cursor "pointer"
-              (box   :class "computerwidget" :orientation "h" :space-evenly "false"
-                  (button :onclick "" "")
-        (revealer :transition "slideleft" :reveal com_reveal :duration "350ms"
-        (box :class "computerwidget"
-             :orientation "h"
-             :halign "start"
-             :space-evenly "false"
-        (label :text "CPU:")
-        (scale :value cpu
-             :min 0
-             :max 101
-             :tooltip "CPU: ${cpu}"
-             :active false)
-        (label :text "RAM:")
-        (scale :value "${EWW_RAM.used_mem_perc}"
-             :min 0
-             :max 101
-             :tooltip "RAM: ${EWW_RAM.used_mem_perc}"
-             :active false))))))
-
-(defwidget sliderbar [value reveal action1 action2 label tooltip  utrue ufalse buttontip]
-  (eventbox :onhover {utrue}
-            :onhoverlost {ufalse}
-            :cursor "pointer"
-            (box   :class "scalebutton" :orientation "h" :space-evenly "false"
-                (button :tooltip {buttontip} :onclick {action1} {label})
-        (revealer :transition "slideright" :reveal reveal :duration "350ms"
-        (scale :value {value}
-               :min 0
-               :max 101
-               :tooltip {tooltip}
-               :onchange {action2}
-)))))
-
-(defwidget radialmeter [value text class labelclass tooltip]
-    (circular-progress
-        :value {value}
-        :class "radial ${class}"
-        :start-angle 0
-        :thickness 12
-        :tooltip tooltip
-        (label :text {text}
-            :class "radial-label ${labelclass}"
-            :limit-width 2
-            :show_truncated false
-            :wrap false
-            :angle 0.0)))
-
-(defwindow bar
-  :monitor 1
-  :windowtype "dock"
-  :geometry (geometry :x "0%"
-                      :y "0%"
-                      :width "100%"
-                      :height "10px"
-                      :anchor "top center")
-  :wm-ignore false
-  :stacking "fg"
-  :reserve (struts :side "top" :distance "40%")
-  (bar))
-
-(defwidget musicv []
-  (box :class "roundpannel" :space-evenly "false" :orientation "h"
-  (box :class "spotifyimg" :space-evenly "false" :orientation "h" :style "background-image: url('${art}');")
-  (box :class "labels" :space-evenly "true" :orientation "v"
-  (button :onclick "playerctl -p spotify next" "嶺")
-  (button :onclick "bash ~/.config/eww/scripts/playerbutton.sh" play-icon)
-  (button :onclick "playerctl -p spotify previous" "嶺")
-)))
-
-(defwidget sound []
-  (box :class "roundpannel" :space-evenly "true" :orientation "h"
-  (box :class "roundpannel" :space-evenly "true" :orientation "v"
-  (box :class "soundpannel" :space-evenly "false" :orientation "h"
-     (button :onclick "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh" sound-icon)
-     (scale :value volume
-            :min 0
-            :max 101
-            :orientation "h"
-            :tooltip "Volume: ${volume}"
-            :active true
-            :onchange "amixer -D pulse sset Master {}%"))
-
-     (box :class "soundpannel" :space-evenly "false" :orientation "h"
-     (button :onclick "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh" mic-icon)
-     (scale :value mic_percent
-            :min 0
-            :max 101
-            :orientation "h"
-            :tooltip "Mic: ${mic_percent}"
-            :active true
-            :onchange "amixer -D pulse sset Capture {}%"
-)))
-     (box :class "sys" :space-evenly "true" :orientation "v"
-       (box :space-evenly "true" :orientation "h"   
-))))
-
-(defwidget ram []
-  (box :class "roundpannel" :space-evenly "false" :orientation "v"
-  (radialmeter	:value "${EWW_RAM.used_mem_perc}"
-	        :text ""
-                :tooltip "RAM: ${EWW_RAM.used_mem_perc}"
-		:labelclass "ram-radial-label"
-		:class "ram-radial")))
-
-(defwidget cpu []
-  (box :class "roundpannel" :space-evenly "false" :orientation "v"
-  (radialmeter  :value cpu
-                :text ""
-                :tooltip "CPU: ${cpu}"
-                :labelclass "cpu-radial-label"
-                :class "cpu-radial")))
-
-(defwidget wifi [] (box :class "wifipannel" :space-evenly "true" :orientation "v" (button :onclick "sh scripts/wifi.sh" wifi-icon)))
-
-(defwidget weather []
-  (box :class "wifipannel" :space-evenly "false" :orientation "v"
-  (button :onclick "" weather-icon)
-  (label :text "${weather-text}")
-))
-
-(defwidget links [] 
-  (box :class "roundpannel" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "xdg-open https://github.com" "Github")
-    (button :onclick "xdg-open https://www.youtube.com/" "Youtube")
-    (button :onclick "xdg-open https://www.reddit.com/r/unixporn/top/?t=year" "R/unixporn")
-    (button :onclick "xdg-open https://open.spotify.com/" "Spotify Web Player")
-    (button :onclick "xdg-open https://elkowar.github.io/eww/magic-vars.html#eww_cpu" "EWW Docs")
-  ))
-
-(defwidget exit [] 
-  (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "poweroff" "")))
-
-(defwidget lock []
-  (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "sh scripts/lockscreen.sh" "")))
-
-(defwidget notifi []
-  (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "notify-send 'test'" "")))
-
-(defwidget firefox []
-  (box :class "sys" :space-evenly "false" :orientation "v" :spacing 10
-    (button :onclick "firefox" "")))
-
-(defwidget buttons []
-  (box :class "sys" :space-evenly "true" :orientaion "h" :spacing 10
-    (button :onclick "poweroff" "")))
-
-(defwidget pannel []
-   (box :class "sidepannel" :orientation "v" :space-evenly "true"
-       (box :orientation "v" :space-evenly "false"
-           (box :orientation "h" :space-evenly "true"
-               (time))
-           (box :orientation "h" :space-evenly "true"
-               (sound))
-           (box :orientation "h" :space-evenly "true"
-               (musicv)
-               (links))
-           (box :orientation "h" :space-evenly "true"
-	       (cpu)
-               (ram))
-           (box :orientation "h" :space-evenly "true"
-               (wifi)
-               (weather))
-           (box :orientation "h" :space-evenly "true"
-               (firefox)
-               (notifi)
-               (lock)
-               (exit))
-)))
-
-(defwidget time []
-  (box :class "roundpannel" :space-evenly "false" :orientation "v"
-  (label :text clock_time  :class "labelt")
-  (label :text clock_date  :class "labelv")))
-
-(defwindow sidebar
-  :monitor 1
-  :windowtype "toolbar"
-  :geometry (geometry :x "0%"
-                      :y "6%"
-                      :width "25%"
-                      :height "94%")
-  :wm-ignore true
-  :stacking "fg"
-  (pannel))
+(include "./yuck/bar.yuck")
+(include "./yuck/sidebar.yuck")
+(include "./yuck/dashboard.yuck")

@@ -12,7 +12,7 @@ Rounded Corners
 * Rounded Corners (picom)
 * Weather widget
 * A widgets bar 
-![screenshot3](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot3.png?raw=true) <br>
+![screenshot3](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot4.png?raw=true) <br>
 
 
 # Dependencies

@@ -28,10 +28,11 @@ Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 Lockscreen - [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) <br />
 
 # Known Issues / Future features
-i will fix these when i have time.
-* Some kind of allignment error, most likely the font.
+i will fix these when i have time..
 * a lot of small bugs such as the weather not updating.
 * add a calendar
+* fix performance issues
+* add a notification center
 * Make a install script. (prob for arch and ubuntu)
 
 # Installation

@@ -30,9 +30,8 @@ Lockscreen - [betterlockscreen](https://github.com/betterlockscreen/betterlocksc
 # Known Issues / Future features
 i will fix these when i have time..
 * a lot of small bugs such as the weather not updating.
-* add a calendar
 * fix performance issues
-* add a notification center
+* add a timer/todo list
 * Make a install script. (prob for arch and ubuntu)
 
 # Installation

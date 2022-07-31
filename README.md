@@ -18,7 +18,6 @@ Dashboard (unfinished)
 # Installation
 * Install dependncies
 * Clone these files and put them in ~/.config
-* install dependencies 
 * choose a wallpaper from /wallpapers and put it in ~/Pictures named wallpaper.jpg
 * Thats it. Enjoy.
 

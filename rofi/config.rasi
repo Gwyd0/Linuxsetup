@@ -1,21 +1,22 @@
 configuration {
-        modi: "window,run,ssh,drun";
-        width: 28; 
+	modi: "window,run,ssh,drun";
+	width: 28;
         height: 100%;
-        lines: 35;
-        columns: 1;
-        font: "mono 12";
+	lines: 35;
+	columns: 1;
+	font: "mono 12";
         terminal: "alacritty"; /* change to your terminal */
-        bw: 0;
-        location: 1;
-        padding: 10;
-        yoffset: 53;
-        xoffset: 7;
-        hide-scrollbar: true;
-        display-drun: ">";
+	bw: 0;
+	location: 1;
+	padding: 10;
+	yoffset: 53;
+	xoffset: 7;
+	hide-scrollbar: true;
+	display-drun: ">";
         levenshtein-sort: true;
         color-normal: "#080808, #FFFFFF, #080808, #FFffff, #080808";
         color-window: "#080808, #080808, #080808";
         fixed-num-lines: false;
-        dpi: -1;
+	dpi: -1;
 }
+

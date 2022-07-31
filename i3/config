@@ -25,7 +25,7 @@ bindsym $mod+Return  exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+z exec --no-startup-id eww open --toggle sidebar
-
+bindsym $mod+Shift+x exec --no-startup-id eww open --toggle dashboard
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -113,16 +113,19 @@ exec_always --no-startup-id feh --bg-scale $wallpaper
 # START APPS
 
 exec discord
-exec spotify
+#exec spotify
 
 #KEYMAP
 #exec_always --no-startup-id setxkbmap -layout gb
 # use if there are gpu bugs --experimental-backends
+exec_always --no-startup-id pkill playerctl
 
 exec_always --no-startup-id dunst 
-exec_always --no-startup-id eww open bar
+exec_always --no-startup-id killall eww
 exec_always --no-startup-id eww reload
+exec_always --no-startup-id eww open bar
 exec_always --no-startup-id picom --experimental-backends  --config=.config/i3/picom.conf
+#exec_always --no-startup-id bash ~/.config/dunst/reload
 
 for_window [class="^.*"] border none
 

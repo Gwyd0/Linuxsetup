@@ -2,7 +2,7 @@
 
 (defwidget spotify []
   (box :class "roundpannel" :space-evenly "false" :orientation "h"
-  (box :class "spotifyimg" :space-evenly "false" :orientation "h" :style "background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(11, 11, 1, 1)), url('${art}');"
+  (box :class "spotifyimg" :space-evenly "false" :orientation "h" :style "background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(11, 11, 1, 1)), url('${art != "" ? art : "./scripts/music-fallback.png"}');"
   (box :class "spotifytitle" :space-evenly "false" :orientation "v" :width "264"
     (label :text "${music  != "" ? "Song: ${music}" : "Nothing Playing"}" :halign "start" :limit-width "30" )
     (label :text "${artist != "" ? "Artist: ${artist}" : ""}" :halign "start" :limit-width "30" )
@@ -10,35 +10,15 @@
     (label :text "${status != "" ? "${status}" : ""}" :halign "start" :limit-width "30" )
   ))
   (box :class "labels" :space-evenly "true" :orientation "v" :style "background-color: #181818; border-radius: 5px; padding: 6px; margin: .3rem;"
-    (button :tooltip "Previous Song" :onclick "playerctl -p -s spotify previous" "玲")
+    (button :tooltip "Previous Song" :onclick "playerctl -p spotify previous" "玲")
     (button :tooltip "Play/Pause" :onclick "bash scripts/player.sh --playerbutton" play-icon)
-    (button :tooltip "Next Song" :onclick "playerctl -p -s spotify next" "怜")
+    (button :tooltip "Next Song" :onclick "playerctl -p spotify next" "怜")
 
 )))
 
 (defwidget settings []
   (box :class "roundpannel" :space-evenly "true" :orientation "v"
   (box :class "roundpannel" :space-evenly "true" :orientation "v"
-     (box :class "settingspannel" :space-evenly "false" :orientation "h"
-     (button :tooltip "Mute/Unmute" :onclick "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh" sound-icon)
-     (scale :value volume_percent
-            :min 0
-            :max 101
-            :orientation "h"
-            :tooltip "Volume: ${volume_percent}%"
-            :active true
-            :onchange "amixer -D pulse sset Master {}%"))
-
-     (box :class "settingspannel" :space-evenly "false" :orientation "h"
-     (button :tooltip "Mute/Unmute" :onclick "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh" mic-icon)
-     (scale :value mic_percent
-            :min 0
-            :max 101
-            :orientation "h"
-            :tooltip "Mic: ${mic_percent}%"
-	    :active true
-            :onchange "amixer -D pulse sset Capture {}%")
-     )
      (box :class "settingspannel" :space-evenly "false" :orientation "h"
      (button :onclick "" "")  ;
      (scale :value light_percent
@@ -47,16 +27,16 @@
             :orientation "h"
             :tooltip "Brightness: ${light_percent}%"
             :active true
-            :onchange ""))
+            :onchange "${eww} update light_percent={}"))
 )))
 
 (defwidget ram []
   (box :class "roundpannel" :space-evenly "false" :orientation "v"
   (radialmeter	:value "${EWW_RAM.used_mem_perc}"
 	        :text ""
-                :tooltip "RAM: ${EWW_RAM.used_mem_perc}%"
-		:labelclass "ram-radial-label"
-		:class "ram-radial")))
+          :tooltip "RAM: ${EWW_RAM.used_mem_perc}%"
+		      :labelclass "ram-radial-label"
+		      :class "ram-radial")))
 
 (defwidget cpu []
   (box :class "roundpannel" :space-evenly "false" :orientation "v"
@@ -114,7 +94,7 @@
 (defwidget quickbuttons []
   (box :space-evenly "true" :orientation "h"
     (box :class "sys" :space-evenly "false" :orientation "v"
-      (button :tooltip "Open Firefox" :onclick "firefox" ""))
+      (button :tooltip "Screenshot" :onclick "gnome-screenshot" "臭"))
 
     (box :class "sys" :space-evenly "false" :orientation "v"
       (button :tooltip "Do Not Disturb" :onclick "bash scripts/notifications.sh" noti-icon))
@@ -148,7 +128,7 @@
 (defwidget time []
   (box :class "roundpannel" :space-evenly "false" :orientation "v"
   (label :text clock_time  :class "labelt")
-  (label :text clock_date  :class "labelv")))
+  (label :text "${clock_day_int}/${clock_month_int}/${clock_year_int} - ${clock_day_1}"  :class "labelv")))
 
 (defwindow sidebar
   :monitor 1
@@ -157,6 +137,5 @@
                       :y "6%"
                       :width "25%"
                       :height "94%")
-  :wm-ignore true
-  :stacking "fg"
+  :wm-ignore false
   (pannel))

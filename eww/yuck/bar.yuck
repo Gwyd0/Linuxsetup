@@ -1,13 +1,13 @@
 (defwidget bar []
   (centerbox :orientation "h"
     (left)
-    (center)
+    (clockwidget)
     (right)))
 
 (defwidget right []
   (box :halign "end" :spacing 10 :space-evenly "false" :class "right"
-     (sideinfo)
-     (box1)))
+      (sidebarbutton)
+      (buttontray)))
 
 (defwidget left []
   (box :halign "start" :spacing 10 :space-evenly "false"
@@ -15,21 +15,18 @@
      (music)
      (computerwidget)))
 
-(defwidget center []
-  (clockwidget))
-
-(defwidget sideinfo []
+(defwidget sidebarbutton []
    (box :class "launchbutton" :orientation "h" :space-evenly "false" :halign "end"
-       (button :tooltip "Launch Sidebar" :onclick "eww open sidebar --toggle" "")))
+       (button :tooltip "Launch Sidebar" :onclick "discord" "ﭮ")))
 
-(defwidget box1 []
+(defwidget buttontray []
    (box :class "sidestuff" :orientation "h" :space-evenly "false" :halign "end"
       (sliderbar :reveal vol_reveal
                  :value volume_percent
                  :tooltip "Volume: ${volume_percent}%"
-		 :buttontip "Mute/Unmute"
-                 :action1 "amixer -D pulse set Master 1+ toggle && sh scripts/sound.sh"
-                 :action2 "amixer -D pulse sset Master {}%"
+		             :buttontip "Mute/Unmute"
+                 :action1 "bash scripts/sound.sh --vol"
+                 :action2 "amixer -D pulse sset Master {}% && ${eww} update volume_percent={}"
                  :label sound-icon
                  :utrue "${eww} update vol_reveal=true"
                  :ufalse "${eww} update vol_reveal=false")
@@ -38,8 +35,8 @@
                  :value mic_percent
                  :tooltip "Mic: ${mic_percent}%"
                  :buttontip "Mute/Unmute"
-		 :action1 "amixer -D pulse sset Capture +1 toggle && sh scripts/mic.sh"
-                 :action2 "amixer -D pulse sset Capture {}%"
+		             :action1 "bash scripts/sound.sh --mic"
+                 :action2 "amixer -D pulse sset Capture {}% && ${eww} update mic_percent={}"
                  :label mic-icon
                  :utrue "${eww} update mic_reveal=true"
                  :ufalse "${eww} update mic_reveal=false")
@@ -66,7 +63,7 @@
 
 (defwidget clockwidget []
     (box :class "clock_module" :space-evenly "false" :orientation "h" :spacing 5
-        (button :onclick "" clock_time)))
+        (button :tooltip "Open calendar" :onclick "${eww} open cal --toggle" clock_time)))
 
 (defwidget workspaces []
   (box :class "workspaces"
@@ -126,9 +123,58 @@
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "100%"
-                      :height "10px"
+                      :height "2%"
                       :anchor "top center")
   :wm-ignore false
   :stacking "fg"
   :reserve (struts :side "top" :distance "40%")
   (bar))
+
+
+(defwidget cal []
+  (box :class "roundpannel" :orientation "h" :space-evenly "true"
+    (calendar :day clock_day_int :month clock_month_int :year clock_year_int :spacing 10)
+  )
+)
+
+(defwindow cal
+  :monitor 1
+  :windowtype "toolbar"
+  :geometry (geometry :x "0%"
+                      :y "6%"
+                      :width "30%"
+                      :height "20%"
+                      :anchor "top center")
+  :wm-ignore false
+  :stacking "fg"
+  :reserve (struts :side "top" :distance "40%")
+  (cal)
+)
+
+
+(defwidget noti [] 
+  (box :class "roundpannel" :orientation "h" :space-evenly "false" :spacing 10
+    (box :class "spotifyimg" :space-evenly "true" :orientation "h" :halign "center" :style "background-image: url('${art != "" ? art : "./scripts/music-fallback.png"}');")
+    (box :orientation "v" :space-evenly "false"
+      (label :valign "center" :halign "start" :text "${status} - ${music}")
+      (label :valign "center" :halign "start" :text "${artist}")
+      (label :valign "center" :halign "start" :text "${album}")
+    ) 
+    (box :orientation "v" :space-evenly "false"
+      (button :onclick "${eww} close noti" "x")
+    )
+  )
+)
+
+(defwindow noti
+  :monitor 1
+  :windowtype "dialog"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "20%"
+                      :height "12%"
+                      :anchor "bottom right")
+  :wm-ignore true
+  :stacking "bg"
+  :reserve (struts :side "top" :distance "40%")
+  (noti))

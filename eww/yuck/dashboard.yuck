@@ -1,23 +1,96 @@
-(defwidget dashboard []
-   (box :class "sidepannel" :orientation "v" :space-evenly "true"
-       (box :orientation "v" :space-evenly "false"
-           (box :orientation "v" :space-evenly "true"
-               (box :orientation "v" :space-evenly "true" :style "background-color: #181818; padding: .9rem; border-radius: 8px; margin: .3rem;"
-                   (button :onclick ""  "Notification Center"))
-	       (box :orientation "v" :space-evenly "true" :style "background-color: #181818; padding: .9rem; border-radius: 8px; margin: .3rem;"
-		   (button :halign "start" :onclick ""  "Spotify")
-	           (button :halign "start" :onclick ""  "Shochu - Playing"))
-))))
+(defwidget spotifysmall []
+  (box :class "roundpannel" :space-evenly "false" :orientation "v"
+  (box :class "spotifyimg" :space-evenly "true" :orientation "v" :halign "center" :style "background-image: url('${art != "" ? art : "./scripts/music-fallback.png"}');")
+  ;;(label :text music :limit-width 15)
+  (box :class "labels" :space-evenly "true" :orientation "h" :style "background-color: #181818; border-radius: 5px; padding: 6px; margin: .3rem;"
+    (button :tooltip "Previous Song" :onclick "playerctl -p spotify previous" "玲")
+    (button :style "font-size: 1.4em;" :tooltip "Play/Pause" :onclick "bash scripts/player.sh --playerbutton" play-icon)
+    (button :tooltip "Next Song" :onclick "playerctl -p spotify next" "怜")
+)))
 
+(defwidget profile [] 
+  (box :orientation "h" :space-evenly "false"
+    (box :class "roundpannel" :orientation "v" :space-evenly "false"
+      (box :class "profile" :orientation "v" :space-evenly "true" :halign "center")
+      (label :text user-name :style "color: #ff9283;")
+      (label :text pc-name :style "font-size: 0.7em;")
+    )
+    (box :class "roundpannel" :orientation "v" :space-evenly "true"
+      (button :style "font-size: 2em;" :onclick "power off" "襤")
+      (button :style "font-size: 2em;" :onclick "bash scripts/lockscreen.sh" "")
+      (button :style "font-size: 2em;" :onclick "bash scripts/notifications.sh" noti-icon)
+      (button :style "font-size: 2em;" :onclick "gnome-screenshot -d 1" "臭")
+    )
+  )
+)
+
+(defwidget buttonsbig []
+  (box :class "roundpannel" :orientation "h" :space-evenly "true"
+    (box :orientation "v" :space-evenly "true"
+      (button :class "big-buttons" :onclick "bash scripts/wifi.sh --button" wifi-icon)
+      (button :class "big-buttons" :onclick "bash scripts/sound.sh --vol" sound-icon)
+    )
+    (box :orientation "v" :space-evenly "true"
+      (button :class "big-buttons" :onclick "notify-send 'Error' 'Bluetooth is not enabled.' -i  '~/.config/dunst/img/error.png'" "")
+      (button :class "big-buttons" :onclick "bash scripts/sound.sh --mic" mic-icon)
+    )
+  )
+)
+
+(defwidget todolist []
+  (box :class "roundpannel" :orientation "v" :space-evenly "false" :spacing 10
+    (button :style "font-size: 1.5em;" :onclick "notify-send 'added a todo' " "+")
+
+    (for todo in todo-list
+      (box :orientation "h" :space-evenly "false" :spacing 5
+        (checkbox :style "background-color: #242424; border-radius: 8px;")
+        (input :value "Todo ${todo}" :onchange: "{}" :onaccept "${eww} update todo-text='{}'")
+      )
+    ) 
+  )
+)
+
+(defwidget timer []
+  (box :class "roundpannel" :orientation "h" :space-evenly "true" :spacing 5
+    (for timer in timer-list
+      (timermeter	:value timer-value
+        :text timer-value
+        :inputvalue timer
+        :tooltip "Timer ${timer}"
+        :labelclass "timer-radial-label"
+        :class "timer-radial")
+    )
+  )
+)
+
+
+(defwidget dashboard []
+  (box :class "sidepannel" :orientation "v" :space-evenly "true" :spacing 3
+    (box :orientation "h" :space-evenly "false" ;; row1
+      (profile)
+      (spotifysmall)
+    )
+    (box :orientation "h" :space-evenly "false" ;; row2
+      (buttonsbig)
+      (todolist)
+    )
+    (box :orientation "h" :space-evenly "false" ;; row3
+      (ram)
+      (cpu)    
+      (timer)
+    )
+  )
+)
 
 (defwindow dashboard
   :monitor 1
-  :windowtype "toolbar"
+  :focusable "true"
+  :windowtype "dialog"
   :geometry (geometry :x "0%"
-                      :y "6%"
-                      :width "25%"
-                      :height "94%"
-                      :anchor "top right")
-  :wm-ignore true
+                      :y "0%"
+                      :width "70%"
+                      :height "60%"
+                      :anchor "center")
+  :wm-ignore false
   :stacking "fg"
   (dashboard))

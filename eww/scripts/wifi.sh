@@ -8,7 +8,7 @@ if [[ "$1" == "--update" ]]; then # redundent
     eww update wifi-text="Connected"
   else
     eww update wifi-icon="睊"
-    eww update wifi-icon="Disconnected"
+    eww update wifi-text="Disconnected"
   fi
 elif [[ "$1" == "--button" ]]; then
   if  nmcli | grep -q 'connected'; then

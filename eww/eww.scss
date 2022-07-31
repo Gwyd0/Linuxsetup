@@ -4,20 +4,21 @@ $c0: #080808; //background
 $c1: #101010; //lighter background
 $c2: #323232; //lighest background
 
-$c3: #777777; //#FF968A; //salmon
+$a1: #181818; // Accent background
+
+$c3: #ff9283; //#FF968A; //salmon
 $c4: #ffffff; //#8A96FF; //blue
 $c5: #ffffff; //#9AFF96; //green
-$c6: #ffffff; //#FD99DC; //pink
+$c6: #ffffff; //#FD99D6; //pink
 
-$c7: #ffffff; //#ffffff; //white
-$c8: #ffffff; //#0157A3; // LIGHT blue
-$c9: #ffffff; //#4457A3; // green
+$c7: #ffffff; //white
+$c8: #444444; //#0157A3; // LIGHT blue
+$c9: #ffffff; //#4457A; // green
 
 * {
   all: unset;
-  padding-right: 2px; // some font bug
   background-color: $t1;
-  font-family: feather, DroidSansMono NF;
+  font-family: Cousine NF
 }
 
 * scale trough highlight {
@@ -56,7 +57,7 @@ $c9: #ffffff; //#4457A3; // green
 }
 
 .right button:hover {
-  color: $c7;
+  color: $c9;
 }
 
 .workspaces {
@@ -71,14 +72,11 @@ $c9: #ffffff; //#4457A3; // green
   transition: 0.5s;
   color: $c4;
   padding-left: 4px;
-  font-size: 1.3em;
+  font-size: 1.7em;
 }
 
 .workspaces button:hover {
-  color: $c7;
-}
-.workspaces active {
-  color: $c1;
+  color: $c8;
 }
 
 .pmenu button{
@@ -94,13 +92,29 @@ $c9: #ffffff; //#4457A3; // green
   padding-left: 10px;
 }
 
+.launchbutton {
+  font-size: 1.4em;
+  background-color: $c0;
+  border-radius: 8px;
+  padding: .1rem .7rem .1rem .7rem;
+  margin: .3rem;
+}
+
+.launchbutton button{
+  color: $c3;
+  transition: 0.7s;
+}
+.launchbutton button:hover {
+  color: $c7;
+}
+
 .sidestuff{
   font-size: 1.8em;
   background-color: $c0;
   border-radius: 8px;
   padding: .1rem .7rem .1rem .7rem;
   margin: .3rem;
- }
+}
 
 .scalebutton {
   padding-right: 10px;
@@ -148,68 +162,84 @@ $c9: #ffffff; //#4457A3; // green
   color: $c9;
   font-size: 1.2em;
 }
+.clock_module button:hover {
+  color: $c3
+}
 
 // ----- SIDE PANNEL -----
 
 .sidepannel {
   background-color: $c0;
   border-radius: 8px;
-  padding: .7rem .7rem .7rem .7rem;
+  padding: .7rem;
   margin: .3rem;
 }
 
 .roundpannel {
   background-color: $c1;
   border-radius: 8px;
-  padding: .7rem .10rem .7rem .7rem;
+  padding: .7rem;
   margin: .3rem;
   color: $c4;
-  transition: 0.6s;
+}
+.roundpannel button {
+  transition: 0.4s;
 }
 
 .roundpannel button:hover {
-  color: $c7;
+  color: $c8;
+  transition: 0.4s;
 }
 
-
-.soundpannel {
+.settingspannel {
   background-color: $c1;
   border-radius: 8px;
-  padding: .7rem .7rem .7rem .7rem;
+  padding: 0px;
   margin: .3rem;
   color: $c4;
 }
 
-.soundpannel button {
-  color: $c6;
+.settingspannel button {
+  color: $c4;
   font-size: 2em;
 }
 
 .wifipannel {
   background-color: $c1;
   border-radius: 8px;
-  padding: 1.6rem .1rem .1rem .1rem;
-  margin: .3rem;
   color: $c4;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .wifipannel button {
-  font-size: 3em;
+  font-size: 5.4em;
 }
 
 .wifipannel button:hover {
+  color: $c8;
+}
+
+.weatherpannel {
+  background-color: $a1;
+  border-radius: 8px;
+  color: $c4;
+  padding: 12px;
+  font-size: 3em;
+}
+
+.weatherpannel button:hover {
   color: $c7;
 }
 
+
 .sys {
   background-color: $c1;
-  border-radius: 16px;
+  border-radius: 50px;
   margin: .3rem;
   padding: 5px 5px 5px 5px;
 }
 .sys button {
-  font-size: 3em;
+  font-size: 3.3em;
   color: $c3;
   transition: 0.7s;
   padding: 9px 5px 5px 5px;
@@ -231,11 +261,6 @@ $c9: #ffffff; //#4457A3; // green
   color: $c6;
 }
 
-.labelc {
-  color: $c9;
-  font-size: 1.2em;
-}
-
 .labelt {
   color: $c4;
   font-family: mono;
@@ -243,8 +268,8 @@ $c9: #ffffff; //#4457A3; // green
 }
 
 .cpu-radial {
-  color: $c8;
-
+  color: $c5;
+  background-color: $a1;
 }
 
 .cpu-radial-label {
@@ -253,8 +278,8 @@ $c9: #ffffff; //#4457A3; // green
 }
 
 .ram-radial {
-  color: $c9;
-
+  color: $c5;
+  background-color: $a1;
 }
 .ram-radial-label {
   font-size: 6em;
@@ -265,8 +290,12 @@ $c9: #ffffff; //#4457A3; // green
   border-radius: 10px;
   background-repeat: no-repeat;
   padding: .7rem;
+  margin: .3rem;
   background-position: center;
   background-size: cover;
   min-height: 100px;
   min-width: 100px;
 }
+
+// dashboard
+@import './scss/dashboard.scss';

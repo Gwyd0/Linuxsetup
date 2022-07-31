@@ -1,17 +1,20 @@
-(defpoll volume_percent :interval "5s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll mic_percent :interval "5s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll light_percent :interval "1h" "echo '100'")
+(defvar light_percent "100")
+(defvar mic_percent "2")
+(defvar volume_percent "75")
 
 (defpoll clock_time :interval "1m" "date +\%I:%M")
-(defpoll clock_date :interval "12h" "date '+%d/%m/%y %A'")
+(defpoll clock_day_int :interval "12h" "date '+%d'")
+(defpoll clock_month_int :interval "12h" "date '+%m'")
+(defpoll clock_year_int :interval "12h" "date '+%Y'")
+
 (defpoll clock_day_1 :interval "12h" "date '+%A'")
 (defpoll clock_day_2 :interval "12h" "date --date='next day' +'%A'")
 
-(deflisten music :interval "1h" "playerctl -p spotify -F metadata title || true")
-(deflisten artist :interval "1h" "playerctl -p spotify -F metadata artist || true")
-(deflisten album :interval "1h" "playerctl -p spotify -F metadata album || true")
-(deflisten status :interval "1h" "playerctl -p spotify -F status || true")
-(deflisten art :interval "1h" "playerctl -p spotify -F  metadata mpris:artUrl || true")
+(deflisten music  "playerctl -p spotify -F metadata title")
+(deflisten artist "playerctl -p spotify -F metadata artist ")
+(deflisten album  "playerctl -p spotify -F metadata album")
+(deflisten status "playerctl -p spotify -F status")
+(deflisten art    "playerctl -p spotify -F  metadata mpris:artUrl")
 
 (defvar eww "eww -c $HOME/.config/eww/")
 (defpoll play-icon :interval "30s" "bash scripts/player.sh --player")
@@ -19,6 +22,7 @@
 (defvar wifi-icon "直")
 (defvar wifi-text "Connected")
 (defpoll wifi-name :interval "30s" "bash scripts/wifi.sh --update")
+
 
 (defvar mic-icon "")
 (defvar sound-icon "墳")
@@ -34,6 +38,15 @@
 (defvar lock_reveal false)
 (defvar vol_reveal false)
 (defvar mic_reveal false)
+
+(defvar user-name "Gwyd")
+(defvar pc-name "ArchPc")
+
+(defvar timer-name "Timer 1")
+(defvar timer-value "10")
+
+(defvar todo-list "[1,2,3,4]")
+(defvar timer-list "[1,2]")
 
 (include "./yuck/method.yuck")
 

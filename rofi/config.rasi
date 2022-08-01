@@ -9,7 +9,7 @@ configuration {
 	bw: 0;
 	location: 1;
 	padding: 10;
-	yoffset: 53;
+	yoffset: 63;
 	xoffset: 7;
 	hide-scrollbar: true;
 	display-drun: ">";

@@ -18,8 +18,10 @@ Dashboard (unfinished)
 # Installation
 * Install dependncies
 * Clone these files and put them in ~/.config
-* choose a wallpaper from /wallpapers and put it in ~/Pictures named wallpaper.jpg
+* choose a wallpaper from /wallpapers and put it in ~/Pictures named wallpaper.jpg or just change the i3 config $wallpaper var
 * Thats it. Enjoy.
+
+**for weather too work you need to change the $location var in eww/scripts/weather.sh**
 
 # Dependencies
 UI - [Eww](https://github.com/elkowar/eww) <br />
@@ -32,6 +34,14 @@ App Launcher - [Rofi](https://github.com/davatorium/rofi) <br />
 Music Controller - [Playerctl](https://archlinux.org/packages/community/x86_64/playerctl/) <br />
 Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 Lockscreen - [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) <br />
+
+# Keybinds
+all the default i3 keybinds + 
+| Keybind       | Action        
+| ------------- |:-------------:
+| Mod+Shift+z   | Opens Sidebar 
+| Mod+Shift+x   | Opens Dashboard      
+| Mod+Shift+r   | Reloads Config
 
 # Known Issues / Future features
 i will fix these when i have time..

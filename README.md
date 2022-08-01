@@ -45,7 +45,6 @@ all the default i3 keybinds +
 
 # Known Issues / Future features
 i will fix these when i have time..
-* a lot of small bugs such as the weather not updating.
-* fix performance issues
-* add a timer/todo list
+* lots of small bugs such as the weather not updating.
+* finish dashboard
 * Make a install script. (prob for arch and ubuntu)

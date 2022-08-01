@@ -19,7 +19,7 @@
       (button :style "font-size: 2em;" :onclick "power off" "襤")
       (button :style "font-size: 2em;" :onclick "bash scripts/lockscreen.sh" "")
       (button :style "font-size: 2em;" :onclick "bash scripts/notifications.sh" noti-icon)
-      (button :style "font-size: 2em;" :onclick "gnome-screenshot -d 1" "臭")
+      (button :style "font-size: 2em;" :onclick "gnome-screenshot -d 1 -a" "臭")
     )
   )
 )

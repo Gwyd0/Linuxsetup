@@ -5,8 +5,8 @@
     (right)))
 
 (defwidget right []
-  (box :halign "end" :spacing 10 :space-evenly "false" :class "right"
-      (sidebarbutton)
+  (box :halign "end" :spacing 10 :space-evenly "false"
+      (sidebutton)
       (buttontray)))
 
 (defwidget left []
@@ -15,58 +15,63 @@
      (music)
      (computerwidget)))
 
-(defwidget sidebarbutton []
-   (box :class "launchbutton" :orientation "h" :space-evenly "false" :halign "end"
+(defwidget sidebutton []
+   (box :class "bar-pannel" :orientation "h" :space-evenly "false" :halign "end"
        (button :tooltip "Launch Sidebar" :onclick "discord" "ﭮ")))
 
 (defwidget buttontray []
-   (box :class "sidestuff" :orientation "h" :space-evenly "false" :halign "end"
-      (sliderbar :reveal vol_reveal
-                 :value volume_percent
-                 :tooltip "Volume: ${volume_percent}%"
-		             :buttontip "Mute/Unmute"
-                 :action1 "bash scripts/sound.sh --vol"
-                 :action2 "amixer -D pulse sset Master {}% && ${eww} update volume_percent={}"
-                 :label sound-icon
-                 :utrue "${eww} update vol_reveal=true"
-                 :ufalse "${eww} update vol_reveal=false")
+   (box :class "bar-pannel" :orientation "h" :space-evenly "false" :halign "end"
+      (box :space-evenly "false" :vexpand "true" :spacing 10
+        (sliderbar :reveal vol_reveal
+                  :value volume_percent
+                  :tooltip "Volume: ${volume_percent}%"
+                  :buttontip "Mute/Unmute"
+                  :action1 "bash scripts/sound.sh --vol"
+                  :action2 "amixer -D pulse sset Master {}% && ${eww} update volume_percent={}"
+                  :label sound-icon
+                  :utrue "${eww} update vol_reveal=true"
+                  :ufalse "${eww} update vol_reveal=false")
 
-      (sliderbar :reveal mic_reveal
-                 :value mic_percent
-                 :tooltip "Mic: ${mic_percent}%"
-                 :buttontip "Mute/Unmute"
-		             :action1 "bash scripts/sound.sh --mic"
-                 :action2 "amixer -D pulse sset Capture {}% && ${eww} update mic_percent={}"
-                 :label mic-icon
-                 :utrue "${eww} update mic_reveal=true"
-                 :ufalse "${eww} update mic_reveal=false")
-      (lockwidget)
-      (powerwidget)))
+        (sliderbar :reveal mic_reveal
+                  :value mic_percent
+                  :tooltip "Mic: ${mic_percent}%"
+                  :buttontip "Mute/Unmute"
+                  :action1 "bash scripts/sound.sh --mic"
+                  :action2 "amixer -D pulse sset Capture {}% && ${eww} update mic_percent={}"
+                  :label mic-icon
+                  :utrue "${eww} update mic_reveal=true"
+                  :ufalse "${eww} update mic_reveal=false")
+      )
+
+    (lockwidget)
+    (powerwidget)
+  )
+)
 
 (defwidget powerwidget []
     (eventbox :onhover "${eww} update power_reveal=true"
               :onhoverlost "${eww} update power_reveal=false"
               :cursor "pointer"
-            (box  :class "pmenu" :orientation "h" :space-evenly "false"
+            (box  :class "power" :orientation "h" :space-evenly "false"
                 (button :tooltip "Power off" :onclick "poweroff" "襤")
-        (revealer :class "pmenu_label" :transition "slideleft" :reveal power_reveal :duration "350ms"
+        (revealer :class "power-label" :transition "slideleft" :reveal power_reveal :duration "350ms"
         (button :onclick "poweroff" "Exit")))))
 
 (defwidget lockwidget []
     (eventbox :onhover "${eww} update lock_reveal=true"
               :onhoverlost "${eww} update lock_reveal=false"
               :cursor "pointer"
-            (box  :class "pmenu" :orientation "h" :space-evenly "false"
+            (box  :class "power" :orientation "h" :space-evenly "false"
                 (button :tooltip "Lockscreen" :onclick "sh scripts/lockscreen.sh" "")
-        (revealer :class "pmenu_label" :transition "slideleft" :reveal lock_reveal :duration "350ms"
+        (revealer :class "power-label" :transition "slideleft" :reveal lock_reveal :duration "350ms"
         (button :onclick "sh scripts/lockscreen.sh" "Lock")))))
 
 (defwidget clockwidget []
-    (box :class "clock_module" :space-evenly "false" :orientation "h" :spacing 5
+    (box :class "clock-label" :space-evenly "false" :orientation "h" :spacing 5
         (button :tooltip "Open calendar" :onclick "${eww} open cal --toggle" clock_time)))
 
 (defwidget workspaces []
-  (box :class "workspaces"
+  (box :class "bar-pannel-s"
        :orientation "h"
        :space-evenly true
        :halign "start"
@@ -82,23 +87,24 @@
     (eventbox :onhover "${eww} update music_reveal=true"
               :onhoverlost "${eww} update music_reveal=false"
               :cursor "pointer"
-              (box   :class "music" :orientation "h" :space-evenly "false"
-                  (button :onclick "" "")
+              (box   :class "computer-pannel" :orientation "h" :space-evenly "false"
+                  (button :onclick "spotify" "")
         (revealer :transition "slideleft" :reveal music_reveal :duration "350ms"
-	(box :class "music"
+	(box :class "computer-pannel"
              :orientation "h"
              :space-evenly "false"
              :halign "end"
+             :tooltip "Currently ${status}"
              {music != "" ? "${music}" : "Nothing Playing"})))))
 
 (defwidget computerwidget []
     (eventbox :onhover "${eww} update com_reveal=true"
               :onhoverlost "${eww} update com_reveal=false"
               :cursor "pointer"
-              (box   :class "computerwidget" :orientation "h" :space-evenly "false"
-                  (button :onclick "" "")
+        (box   :class "computer-pannel" :orientation "h" :space-evenly "false"
+          (button :onclick "" "")
         (revealer :transition "slideleft" :reveal com_reveal :duration "350ms"
-        (box :class "computerwidget"
+        (box :class "computer-pannel"
              :orientation "h"
              :halign "start"
              :space-evenly "false"
@@ -123,7 +129,7 @@
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "100%"
-                      :height "2%"
+                      :height "4%"
                       :anchor "top center")
   :wm-ignore false
   :stacking "fg"
@@ -132,7 +138,7 @@
 
 
 (defwidget cal []
-  (box :class "roundpannel" :orientation "h" :space-evenly "true"
+  (box :class "roundpannel" :orientation "h" :space-evenly "true" :style "background-color: #181818; color: #ff9283;"
     (calendar :day clock_day_int :month clock_month_int :year clock_year_int :spacing 10)
   )
 )
@@ -142,7 +148,7 @@
   :windowtype "toolbar"
   :geometry (geometry :x "0%"
                       :y "6%"
-                      :width "30%"
+                      :width "25%"
                       :height "20%"
                       :anchor "top center")
   :wm-ignore false

@@ -9,7 +9,7 @@
     (label :text "${album  != "" ? "Album: ${album}" : ""}" :halign "start" :limit-width "30" )
     (label :text "${status != "" ? "${status}" : ""}" :halign "start" :limit-width "30" )
   ))
-  (box :class "labels" :space-evenly "true" :orientation "v" :style "background-color: #181818; border-radius: 5px; padding: 6px; margin: .3rem;"
+  (box :class "spotify-label" :space-evenly "true" :orientation "v" :style "background-color: #181818; border-radius: 5px; padding: 6px; margin: .3rem;"
     (button :tooltip "Previous Song" :onclick "playerctl -p spotify previous" "玲")
     (button :tooltip "Play/Pause" :onclick "bash scripts/player.sh --playerbutton" play-icon)
     (button :tooltip "Next Song" :onclick "playerctl -p spotify next" "怜")
@@ -127,8 +127,8 @@
 
 (defwidget time []
   (box :class "roundpannel" :space-evenly "false" :orientation "v"
-  (label :text clock_time  :class "labelt")
-  (label :text "${clock_day_int}/${clock_month_int}/${clock_year_int} - ${clock_day_1}"  :class "labelv")))
+  (label :text clock_time  :class "time-label")
+  (label :text "${clock_day_int}/${clock_month_int}/${clock_year_int} - ${clock_day_1}"  :class "date-label")))
 
 (defwindow sidebar
   :monitor 1

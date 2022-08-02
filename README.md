@@ -42,6 +42,8 @@ all the default i3 keybinds +
 | Mod+Shift+z   | Opens Sidebar 
 | Mod+Shift+x   | Opens Dashboard      
 | Mod+Shift+r   | Reloads Config
+| Ctrl+Space    | Clears the newest notification
+| Ctrl+Shift+Space   | Clears all notifications
 
 # Known Issues / Future features
 i will fix these when i have time..

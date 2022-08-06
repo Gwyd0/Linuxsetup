@@ -64,6 +64,7 @@ if [[ "$1" == "--ubuntu" ]]; then
                     eww reload
                     echo "[setup] Done. Removing install script."
                     rm -rf ~/install.sh
+                    exit 1
                 else 
                     echo '[error] Dependencies did not install correctly. Install manually. https://github.com/Gwyd0/Linuxsetup#dependencies'
                     exit 1
@@ -79,6 +80,8 @@ if [[ "$1" == "--ubuntu" ]]; then
     fi
 elif [[ "$1" == "--arch" ]]; then
     echo '[setup] Install Type: Arch Linux'
+    exit 1
 else 
     echo '[setup] invalid argument --arch or --ubuntu'
+    exit 1
 fi

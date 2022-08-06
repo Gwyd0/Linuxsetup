@@ -9,15 +9,6 @@ echo 'Linux Rice Install Script (only for ubuntu and arch)'
 echo 'By Gwyd'
 echo '==========================================================='
 
-## debug ########
-
-if rm -rf install.sh ; then 
-    echo '[install] removed old install script'
-fi
-killall eww
-
-## debug ########
-
 if [[ "$1" == "--ubuntu" ]]; then
     echo '[setup] Install Type: Ubuntu'
     echo '[setup] Installing Eww'
@@ -66,11 +57,12 @@ if [[ "$1" == "--ubuntu" ]]; then
                     echo '[setup] Clearing tmp files'
                     rm -rf ~/.config/Linuxsetup
                     rm -rf ~/eww
-
+                    
                     if eww open bar; then
                         echo "[setup] You should see a bar."
                     fi
                     eww reload
+                    rm -rf ~/install.sh
                 else 
                     echo '[error] Dependencies did not install correctly. Install manually. https://github.com/Gwyd0/Linuxsetup#dependencies'
                     exit 1

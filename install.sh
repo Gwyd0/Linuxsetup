@@ -9,9 +9,16 @@ echo 'Linux Rice Install Script (only for ubuntu and arch)'
 echo 'By Gwyd'
 echo '==========================================================='
 
+## debug ########
+
+if rm -rf install.sh ; then 
+    echo '[install] removed old install script'
+fi
+killall eww
+
+## debug ########
 
 if [[ "$1" == "--ubuntu" ]]; then
-
     echo '[setup] Install Type: Ubuntu'
     echo '[setup] Installing Eww'
 

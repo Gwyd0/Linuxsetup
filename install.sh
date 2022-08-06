@@ -28,7 +28,7 @@ if [[ "$1" == "--ubuntu" ]]; then
         exit 1
     else
         echo '[building] Prerequisites installed'
-        if echo 'cargo build --release' ; then 
+        if cargo build --release; then 
             cd target/release
             chmod +x ./eww
             sudo cp eww /usr/local/bin/

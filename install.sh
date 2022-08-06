@@ -54,7 +54,7 @@ if [[ "$1" == "--ubuntu" ]]; then
                     echo '[config] Copying dunst config' && cp -R ~/.config/Linuxsetup/dunst ~/.config
                     echo '[config] Copying rofi config' && cp -R ~/.config/Linuxsetup/rofi ~/.config
                     echo '[config] Copying alacritty config' && cp -R ~/.config/Linuxsetup/alacritty ~/.config
-                    #echo '[config] Copying eww config' && cp -R ~/.config/Linuxsetup/eww ~/.config
+                    echo '[config] Copying eww config' && cp -R ~/.config/Linuxsetup/eww ~/.config
 
                     echo '[setup] Clearing tmp files'
                     rm -rf ~/.config/Linuxsetup

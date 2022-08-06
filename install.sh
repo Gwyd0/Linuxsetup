@@ -62,6 +62,7 @@ if [[ "$1" == "--ubuntu" ]]; then
                         echo "[setup] You should see a bar."
                     fi
                     eww reload
+                    echo "[setup] Done. Removing install script."
                     rm -rf ~/install.sh
                 else 
                     echo '[error] Dependencies did not install correctly. Install manually. https://github.com/Gwyd0/Linuxsetup#dependencies'

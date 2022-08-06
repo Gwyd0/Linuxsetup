@@ -16,7 +16,7 @@ if [[ "$1" == "--ubuntu" ]]; then
     echo '[setup] Installing Eww'
 
     cd ~
-    if ! [[ -x "$(command git clone https://github.com/elkowar/eww) " ]]; then 
+    if ! [[ -x "$(command git clone https://github.com/elkowar/eww -q)" ]]; then 
         echo '[git] eww already cloned'
     fi
     cd ~/eww
@@ -28,7 +28,7 @@ if [[ "$1" == "--ubuntu" ]]; then
         exit 1
     else
         echo '[building] Prerequisites installed'
-        if echo 'build command here' ; then #cargo build --release
+        if echo 'cargo build --release' ; then 
             cd target/release
             chmod +x ./eww
             sudo cp eww /usr/local/bin/
@@ -38,7 +38,7 @@ if [[ "$1" == "--ubuntu" ]]; then
                 #install picom
 
                 echo '[setup] Installing Dependencies' 
-                #sudo apt-get -qq -y update
+                #sudo apt-get -qq -y update 
                 if sudo apt-get -qq -y install i3-gaps-wm feh rofi dunst alacritty playerctl ; then
                     echo '[setup] Installed Dependencies' 
                     echo '[config] Installing Configs.'
@@ -46,7 +46,7 @@ if [[ "$1" == "--ubuntu" ]]; then
                     mkdir ~/.config/Linuxsetup
                     cd ~/.config/Linuxsetup
 
-                    if ! [[ -x "$(command git clone https://github.com/Gwyd0/Linuxsetup .) " ]]; then 
+                    if ! [[ -x "$(command git clone https://github.com/Gwyd0/Linuxsetup . -q) " ]]; then 
                         echo '[git] configs already cloned'
                     fi
 
@@ -58,7 +58,7 @@ if [[ "$1" == "--ubuntu" ]]; then
 
                     echo '[setup] Clearing tmp files'
                     rm -rf ~/.config/Linuxsetup
-                    #rm -rf ~/eww
+                    rm -rf ~/eww
 
                     if eww open bar; then
                         echo "[setup] You should see a bar."

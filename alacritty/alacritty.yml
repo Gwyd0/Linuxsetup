@@ -1,6 +1,3 @@
-  # Window dimensions (changes require restart)
-  # Specified in number of columns/lines, not pixels. If both are zero this
-  # setting is ignored.
 dimensions:
     columns: 100
     lines: 85
@@ -9,10 +6,10 @@ padding:
     x: 2
     y: 0
   # change for transparency
-opacity: 0.8
+window:
+    opacity: 0.8
 
 colors:
-
   primary:
     background: '0x242424'
     foreground: '0xffffff'

@@ -16,6 +16,23 @@ Dashboard (unfinished)
 ![screenshot3](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot4.png?raw=true) <br>
 
 # Installation
+## Ubuntu (install script)
+For Debian based distributions simply, do..
+
+```
+wget https://raw.githubusercontent.com/Gwyd0/Linuxsetup/main/install.sh
+```
+
+then 
+
+```
+bash install.sh
+```
+The options are *I* then *U*, it should then install everything you need.
+
+## Manually
+
+You can just simply clone the repo and install dependencies manually.
 * Install dependncies
 * Clone these files and put them in ~/.config
 * choose a wallpaper from /wallpapers and put it in ~/Pictures named wallpaper.jpg or just change the i3 config $wallpaper var

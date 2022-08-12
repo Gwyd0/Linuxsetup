@@ -6,8 +6,8 @@ My current **I3** daily arch linux setup.
 # Screenshots
 Desktop and sidebar <br>
 ![screenshot1](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot1.png?raw=true) <br>
-Dashboard (unfinished)
-![screenshot2](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot5.png?raw=true) <br>
+Mutitasking <br>
+![screenshot2](https://github.com/Gwyd0/Linuxsetup/blob/main/screenshots/screenshot3.png?raw=true) <br>
 # Features
 * Rounded Corners (picom)
 * A sidebar

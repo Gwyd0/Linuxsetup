@@ -24,8 +24,7 @@ bindsym $mod+Return  exec i3-sensible-terminal
 # change alacritty to whatever terminal your using or i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show drun
-bindsym $mod+Shift+z exec --no-startup-id eww open --toggle sidebar
-bindsym $mod+Shift+x exec --no-startup-id eww open --toggle dashboard
+bindsym $mod+Shift+z exec eww open --toggle sidebar
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down

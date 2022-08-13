@@ -94,7 +94,7 @@
              :orientation "h"
              :space-evenly "false"
              :halign "end"
-             :tooltip "Currently ${status}"
+             :tooltip {status != "" ? "Currently ${status}" : "Spotify is not open."}
              {music != "" ? "${music}" : "Nothing Playing"})))))
 
 (defwidget computerwidget []

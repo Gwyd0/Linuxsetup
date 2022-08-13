@@ -6,21 +6,9 @@ test $? -eq 0 || exit 1 "[error] You should have sudo privilege to run this scri
 
 printf '===========================================================\nLinux Rice Install Script (only for ubuntu and arch)\nBy Gwyd\n==========================================================='
 
-printf '\nOptions are\n R for repair \n I for install\n U for remove\n'
-read -p "What would you like todo: " todo_input
 
-if [ $todo_input == "I" ]; then
-    printf '\nOptions are\n A for arch \n U for ubuntu\n'
-    read -p "What distro: " distro_input
-
-elif [ $todo_input == "R" ]; then
-    printf 'Repair Mode.\n'
-    exit 1
-
-elif [ $todo_input == "U" ]; then
-    printf 'Removing Mode.\n'
-    exit 1
-fi
+printf '\nOptions are\n A for arch \n U for ubuntu\n'
+read -p "What distro: " distro_input
 
 
 git_eww () { # this should work for ubuntu and arch?
@@ -142,6 +130,7 @@ if  [ $distro_input == "U" ]; then
 elif [ $distro_input == "A" ]; then
     echo '[setup] Install Type: Arch Linux (using pacman and sudo)'
     git_eww
+    echo '[setup] Install Script is incomplete. Exiting.'
     exit 1
 else 
     echo '[error] invalid argument'

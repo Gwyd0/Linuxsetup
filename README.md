@@ -1,7 +1,7 @@
 # Linux Setup 
-My current **I3** daily arch linux setup.
+My current **I3** daily arch Linux/Ubuntu setup.
 
-**this is my personal setup so some things may not work.**
+**This is my personal setup, so some things may not work.**
 
 # Screenshots
 Desktop and sidebar <br>
@@ -31,14 +31,14 @@ bash install.sh
 The options are *I* then *U*, it should then install everything you need.
 
 ## Manually
-
-You can just simply clone the repo and install dependencies manually.
+Or, you can clone the repo and install dependencies manually.
 * Install dependncies
 * Clone these files and put them in ~/.config
 * choose a wallpaper from /wallpapers and put it in ~/Pictures named wallpaper.jpg or just change the i3 config $wallpaper var
 * Thats it. Enjoy.
+Eww and picom needs building.
 
-**for weather too work you need to change the $location var in eww/scripts/weather.sh**
+**for weather to work you need to change the $location var in eww/scripts/weather.sh**
 
 # Dependencies
 UI - [Eww](https://github.com/elkowar/eww) <br />
@@ -53,17 +53,14 @@ Font - [Nerdfonts](https://www.nerdfonts.com/) <br />
 Lockscreen - [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) <br />
 
 # Keybinds
-all the default i3 keybinds + 
+All the default I3 keybinds + 
 | Keybind       | Action        
 | ------------- |:-------------:
-| Mod+Shift+z   | Opens Sidebar 
-| Mod+Shift+x   | Opens Dashboard      
+| Mod+Shift+z   | Opens Sidebar     
 | Mod+Shift+r   | Reloads Config
 | Ctrl+Space    | Clears the newest notification
 | Ctrl+Shift+Space   | Clears all notifications
 
-# Known Issues / Future features
-i will fix these when i have time..
-* lots of small bugs such as the weather not updating.
-* finish dashboard
-* Make a install script. (prob for arch and ubuntu)
+# Known Issues 
+I will fix these when I have time…
+* When opening the sidebar quickly, the Spotify widget will bug out, resulting in you not being able to close the sidebar. This can be solved by reloading the config but is very annoying. This seems to only happen on Ubuntu.
